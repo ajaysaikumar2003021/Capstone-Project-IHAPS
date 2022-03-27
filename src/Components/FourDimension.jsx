@@ -45,7 +45,7 @@ const FourDimension = () => {
           <div className="col">
             <div className="card h-100 dimension-card">
               <img
-                src="assets/images/Icon-environmental.png"
+                src="assets/images/Icon-Environmental.png"
                 className="card-img-top mx-auto d-block"
                 alt="environment-img"
               />
