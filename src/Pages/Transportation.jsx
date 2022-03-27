@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
-
+import serverurl from "../serverurl";
+import URL_SERVER from "../serverurl";
 
 const initial_state = {
   "reporting_period_start_date" : "",
@@ -39,7 +40,7 @@ const Transportation = () => {
     e.preventDefault();
     console.log(state);
     
-    fetch('http://127.0.0.1:8000/air-and-transportation/campusfleet/', {
+    fetch(`${URL_SERVER}/air-and-transportation/campusfleet/`, {
         method: 'POST',
         headers: {  'Content-Type': 'application/json' },
         body: JSON.stringify(state)

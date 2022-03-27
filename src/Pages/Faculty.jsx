@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import URL_SERVER from "../serverurl";
 
 const initial_state = {
   "reporting_date" : "",
@@ -35,7 +36,7 @@ const Faculty = () => {
     e.preventDefault();
     console.log(state);
     
-    fetch('http://127.0.0.1:8000/research-and-scholarship/facultysustresearchandservice/', {
+    fetch(`${URL_SERVER}/research-and-scholarship/facultysustresearchandservice/`, {
         method: 'POST',
         headers: {  'Content-Type': 'application/json' },
         body: JSON.stringify(state)

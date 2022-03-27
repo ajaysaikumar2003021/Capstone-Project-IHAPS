@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import URL_SERVER from "../serverurl";
 
 const initial_state = {
   "product_name" : "",
@@ -30,7 +31,7 @@ const Food = () => {
     e.preventDefault();
     console.log(state);
     
-    fetch('http://127.0.0.1:8000/food-and-waste/foodbeveragepurchasing/', {
+    fetch(`${URL_SERVER}/food-and-waste/foodbeveragepurchasing/`, {
         method: 'POST',
         headers: {  'Content-Type': 'application/json' },
         body: JSON.stringify(state)
