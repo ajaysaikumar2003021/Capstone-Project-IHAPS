@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import URL_SERVER from "../serverurl";
+import {URL_SERVER} from "../serverurl";
 
 const initial_state = {
   "reporting_date" : "",

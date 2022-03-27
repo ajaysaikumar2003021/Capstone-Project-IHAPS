@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import serverurl from "../serverurl";
-import URL_SERVER from "../serverurl";
+import {URL_SERVER} from "../serverurl";
 
 const initial_state = {
   "reporting_period_start_date" : "",
