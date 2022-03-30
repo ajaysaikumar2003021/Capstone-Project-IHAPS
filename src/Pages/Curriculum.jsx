@@ -8,7 +8,9 @@ const initial_stateAC = {
   level_of_course : '',
   course_type : '',
   semester_offered : '',
-  year_offered : ''
+  year_offered : '',
+  description : '',
+  
 }
 
 const initial_stateAP = {
