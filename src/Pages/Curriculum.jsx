@@ -10,7 +10,7 @@ const initial_stateAC = {
   semester_offered : '',
   year_offered : '',
   description : '',
-  
+
 }
 
 const initial_stateAP = {
@@ -259,6 +259,7 @@ const Curriculum = () => {
                         value="ug"
                         onChange={handleInputChangeAC}
                         selected={stateAC.level_of_course === "ug"}
+                        checked={stateAC.level_of_course === "ug"}
                       />
                       <label className="form-check-label " for="inlineRadio1">
                         Undergraduate
@@ -273,6 +274,7 @@ const Curriculum = () => {
                         value="pg"
                         onChange={handleInputChangeAC}
                         selected={stateAC.level_of_course === "pg"}
+                        checked={stateAC.level_of_course === "pg"}
                       />
                       <label className="form-check-label" for="inlineRadio2">
                         Graduate
