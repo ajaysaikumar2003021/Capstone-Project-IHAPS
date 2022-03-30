@@ -20,7 +20,7 @@ const AcademicCourses = () => {
 
   return (
     <div className="container-fluid">
-      <h2 className="curriculum-head">Report Academic Courses</h2>
+      <h2 className="curriculum-head">Report Academic Programs</h2>
       <div className="container report-curriculum">
         <table class="table table-striped table-bordered table-curriculum">
           <thead>
