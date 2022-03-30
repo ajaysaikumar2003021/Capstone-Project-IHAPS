@@ -1,9 +1,10 @@
 import React from "react";
-
+import TimeRange from './TimeRange'
 const ReportCurriculum = () => {
   return (
     <div className="container-fluid">
       <h2 className="curriculum-head">Report Curriculum</h2>
+      <TimeRange />
       <div className="container report-curriculum">
         <table class="table table-striped table-bordered table-curriculum">
           <thead>

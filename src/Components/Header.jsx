@@ -110,33 +110,28 @@ const Header = () => {
                     aria-labelledby="navbarDropdownMenuLink"
                   >
                     <li>
-                      <Link className="dropdown-item" to="/report-curriculum">
-                        Curriculum
+                      <Link className="dropdown-item" to="/report-academic-courses">
+                        Academic Courses
                       </Link>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="#">
-                        Research and Scholarship
+                      <Link className="dropdown-item" to="/report-academic-programs">
+                        Academic Programs
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item" to="/report-campus-as-living-lab">
+                        Applied Student Learning
+                      </Link>
+                    </li>
+                    <li>
+                      <a className="dropdown-item" href="/report-faculty-research-service">
+                        Faculy Sustainability Research and Service
                       </a>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="#">
-                        Community Engagement
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Food and Waste
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Air and Transportation
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Other WorkGroups
+                      <a className="dropdown-item" href="/report-peer-to-peer">
+                        Peer-to-Peer Outreach
                       </a>
                     </li>
                   </ul>

@@ -14,6 +14,11 @@ import Signup from "./Pages/Signup";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import ReportCurriculum from "./Reports/ReportCurriculum";
+import AcademicCourses from "./Reports/AcademicCourses";
+import AcademicPrograms from "./Reports/AcademicPrograms";
+import CampusAsLL from "./Reports/Campusaslivinglab";
+import FacultyResearchService from "./Reports/FacultyResearchService";
+import PeertoPeer from "./Reports/PeertoPeer";
 function App() {
   return (
     <>
@@ -35,6 +40,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/report-curriculum" element={<ReportCurriculum/>}/>
+          <Route path="/report-academic-courses" element={<AcademicCourses />}/>
+          <Route path="/report-academic-programs" element={<AcademicPrograms />}/>
+          <Route path="/report-campus-as-living-lab" element={<CampusAsLL />}/>
+          <Route path="/report-faculty-research-service" element={<FacultyResearchService />}/>
+          <Route path="/report-peer-to-peer" element={<PeertoPeer/>}/>
 
         </Routes>
         <Footer />

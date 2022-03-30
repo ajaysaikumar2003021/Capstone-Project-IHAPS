@@ -26,10 +26,10 @@ const Faculty = () => {
   const handleInputChange = (e) => {
     console.log(e.target.value);
     console.log("State", state);
-    setState({
-      ...state,
+    setState(prevState => ({
+      ...prevState,
       [e.target.name]: e.target.value
-    });
+    }));
   }
   
   const handleSubmit = (e) => {
