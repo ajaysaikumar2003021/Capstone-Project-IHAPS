@@ -305,6 +305,7 @@ const Curriculum = () => {
                       value={stateAC.semester_offered}
                       onChange={handleInputChangeAC}
                     >
+                      <option>Choose...</option>
                       <option selected value="Spring">Spring</option>
                       <option value="Fall">Fall</option>
                       <option value="Summer">Summer</option>
