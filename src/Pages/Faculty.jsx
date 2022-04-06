@@ -19,6 +19,7 @@ const initial_state = {
   "supporting_document" : null
 }
 
+const reader = new FileReader();
 const Faculty = () => {
 
   const [state, setState] = useState(initial_state);
@@ -26,28 +27,33 @@ const Faculty = () => {
   const handleInputChange = (e) => {
     console.log(e.target.value);
     console.log("State", state);
+
     setState(prevState => ({
       ...prevState,
       [e.target.name]: e.target.value
     }));
   }
+
   
   const handleSubmit = (e) => {
+    
     e.preventDefault();
-    console.log(state);
+    const uploadData = new FormData();
+    // uploadData.append(...state);
+    for (let key in state) {
+      uploadData.append(key, state[key]);
+    }
+    console.log("uploadData: ", uploadData);
     
     fetch(`${URL_SERVER}/research-and-scholarship/facultysustresearchandservice/`, {
         method: 'POST',
-        headers: {  'Content-Type': 'application/json' },
-        body: JSON.stringify(state)
-        // body: state
+        body: uploadData
     })
     .then(data => data.json())
     .then(data => {
-        // console.log(data.token);
         console.log(data)
         setState(initial_state)
-        // alert('Form Submitted Successfully!!')
+        alert('Form Submitted Successfully!!')
     })
     .catch(err => {
         alert('Form Submission Failed!!')
@@ -80,13 +86,13 @@ const Faculty = () => {
                 <h4 className="mt-2 head-academic">
                   Faculty Sustainability Research and Service
                 </h4>
-                <form className="row g-3">
+                <form className="row g-3" enctype="multipart/form-data">
                   <div className="col-md-6">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Reporting Date (Academic Year)
                     </label>
                     <input
-                      type="text"
+                      type="date"
                       className="form-control"
                       name="reporting_date"
                       value={state.reporting_date}
@@ -371,7 +377,7 @@ const Faculty = () => {
                       onChange={handleInputChange}
                     ></textarea>
                   </div>
-                  {/* <div className="col-md-6">
+                  <div className="col-md-6">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Supporting Documents (Optional)
                     </label>
@@ -379,9 +385,10 @@ const Faculty = () => {
                       type="file"
                       className="form-control"
                       onChange={(evt) => setState({ ...state, supporting_document: evt.target.files[0] })}
+                      // onChange={handleFileChange}
                       name="supporting_document"
                     />
-                  </div> */}
+                  </div>
                   <div className="col-12">
                     <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
                       Submit

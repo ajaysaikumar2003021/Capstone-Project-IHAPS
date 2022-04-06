@@ -17,7 +17,7 @@ const initial_statePTPO = {
   'num_hours_worked_weekly_per_trained_educators': '',
   'num_hours_worked_annualy_by_trained_educators': '',
   'program_url': '',
-  'supporting_doc': '',
+  'supporting_document': '',
 }
 
 const initial_stateSSGPI = {
@@ -31,7 +31,7 @@ const initial_stateSSGPI = {
   'supporting_outreach_materials': '',
   'supporting_outreach_materials_description': '',
   'student_sust_grp_prog_initiative_url': '',
-  'supporting_doc': '',
+  'supporting_document': '',
 }
 
 const initial_stateCEC = {
@@ -53,7 +53,7 @@ const initial_stateSPD = {
   'internally_or_externally_funded' : '',
   'poc' : '',
   'staff_professional_development_url' : '',
-  'supporting_doc' : ''
+  'supporting_document' : ''
 }
 
 const initial_stateCEP = {
@@ -162,10 +162,18 @@ const CommunityEngagement = () => {
     e.preventDefault();
     console.log(PTPO);
     
+    const uploadData = new FormData();
+    // uploadData.append(...state);
+    for (let key in PTPO) {
+      uploadData.append(key, PTPO[key]);
+    }
+    console.log("uploadData: ", uploadData);
+    
     fetch(`${URL_SERVER}/campus-and-community/peertopeeroutreach/`, {
         method: 'POST',
-        headers: {  'Content-Type': 'application/json' },
-        body: JSON.stringify(PTPO)
+        // headers: {  'Content-Type': 'application/json' },
+        // body: JSON.stringify(PTPO)
+        body: uploadData
     })
     .then(data => data.json())
     .then(data => {
@@ -185,10 +193,19 @@ const CommunityEngagement = () => {
     e.preventDefault();
     console.log(SSGPI);
     
+    const uploadData = new FormData();
+    // uploadData.append(...state);
+    for (let key in SSGPI) {
+      uploadData.append(key, SSGPI[key]);
+    }
+    console.log("uploadData: ", uploadData);
+    
+
     fetch(`${URL_SERVER}/campus-and-community/studentsustgrpproginitiative/`, {
         method: 'POST',
-        headers: {  'Content-Type': 'application/json' },
-        body: JSON.stringify(SSGPI)
+        // headers: {  'Content-Type': 'application/json' },
+        // body: JSON.stringify(SSGPI)
+        body: uploadData
     })
     .then(data => data.json())
     .then(data => {
@@ -231,10 +248,19 @@ const CommunityEngagement = () => {
     e.preventDefault();
     console.log(SPD);
     
+    const uploadData = new FormData();
+    // uploadData.append(...state);
+    for (let key in SPD) {
+      uploadData.append(key, SPD[key]);
+    }
+    console.log("uploadData: ", uploadData);
+    
+
     fetch(`${URL_SERVER}/campus-and-community/staffprofessionaldevelopment/`, {
         method: 'POST',
-        headers: {  'Content-Type': 'application/json' },
-        body: JSON.stringify(SPD)
+        // headers: {  'Content-Type': 'application/json' },
+        // body: JSON.stringify(SPD)
+        body: uploadData
     })
     .then(data => data.json())
     .then(data => {
@@ -357,7 +383,7 @@ const CommunityEngagement = () => {
                     <input
                       type="date"
                       className="form-control"
-                      id=""
+                      
                       name="reporting_date"
                       value={SSGPI.reporting_date}
                       onChange={handleInputChangeSSGPI}
@@ -522,9 +548,9 @@ const CommunityEngagement = () => {
                     <input
                       type="file"
                       className="form-control"
-                      name="supporting_doc"
-                      value={SSGPI.supporting_doc}
-                      onChange={handleInputChangeSSGPI}
+                      name="supporting_document"
+                      // value={SSGPI.supporting_doc}
+                      onChange={(evt) => setSSGPI({ ...SSGPI, supporting_document: evt.target.files[0] })}
 
                     />
                   </div>
@@ -738,9 +764,9 @@ const CommunityEngagement = () => {
                     <input
                       type="file"
                       className="form-control"
-                      name="supporting_doc"
-                      value={PTPO.supporting_doc}
-                      onChange={handleInputChangePTPO}
+                      name="supporting_document"
+                      // value={PTPO.supporting_document}
+                      onChange={(evt) => setPTPO({ ...PTPO, supporting_document: evt.target.files[0] })}
                     />
                   </div>
 
@@ -976,8 +1002,9 @@ const CommunityEngagement = () => {
                       type="file"
                       className="form-control"
                       name="supporting_doc"
-                      onChange={handleInputChangeSPD}
-                      value={SPD.supporting_doc}
+                      // onChange={handleInputChangeSPD}
+                      // value={SPD.supporting_doc}
+                      onChange={(evt) => setSPD({ ...SPD, supporting_document: evt.target.files[0] })}
                     />
                   </div>
 
@@ -1171,111 +1198,6 @@ const CommunityEngagement = () => {
                 </form>
               </div>
               {/* CEP */}
-{/* 
-              <div className="tab-pane fade" id="staff">
-                <h4 className="mt-2 head-academic">
-                  Staff Professional Development
-                </h4>
-                <form className="row g-3">
-                  <div className="col-md-6">
-                    <label for="inputEmail4" className="form-label fw-bold">
-                      Reporting Date (Academic Year)
-                    </label>
-                    <input
-                      type="date"
-                      className="form-control"
-                      name="reporting_date"
-                      value={CEP.reporting_date}
-                      onChange={handleInputChangeCEP}
-                    />
-                  </div>
-                  <div className="col-md-6">
-                    <label for="inputEmail4" className="form-label fw-bold">
-                      Name of Sustainbaility Professional Development or
-                      Training Opportunity
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="ce_program_title"
-                      value={CEP.ce_program_title}
-                    />
-                  </div>
-
-                  <div className="col-md-6">
-                    <label for="inputEmail4" className="form-label fw-bold">
-                      Brief Description of Training
-                    </label>
-                    <textarea
-                      type="text"
-                      className="form-control"
-                      name="description"
-                      value={CEP.description}
-                      onChange={handleInputChangeCEP}
-                    ></textarea>
-                  </div>
-
-                  <div className="col-md-6">
-                    <label for="inputEmail4" className="form-label fw-bold">
-                      Date(s) Offered
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="inputEmail4"
-                    />
-                  </div>
-
-                  <div className="col-md-6">
-                    <label for="inputEmail4" className="form-label fw-bold">
-                      Number of Staff Participants (Enter Number)
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="inputEmail4"
-                    />
-                  </div>
-
-                  <div className="col-md-6">
-                    <label for="inputState" className="form-label fw-bold">
-                      Internally-Offered or Externally-Supported
-                    </label>
-                    <select id="inputState" className="form-select">
-                      <option selected>payment</option>
-                      <option>reimbursement</option>
-                      <option>subsidy</option>
-                    </select>
-                  </div>
-
-                  <div className="col-md-6">
-                    <label for="inputEmail4" className="form-label fw-bold">
-                      POC for Training Program
-                    </label>
-                    <textarea
-                      type="text"
-                      className="form-control"
-                      id="inputEmail4"
-                    ></textarea>
-                  </div>
-                  <div className="col-md-6">
-                    <label className="form-label fw-bold">
-                      Supporting Documents (Optional)
-                    </label>
-                    <input
-                      type="file"
-                      className="form-control"
-                      id="inputEmail4"
-                    />
-                  </div>
-
-                  <div className="col-12">
-                    <button type="submit" className="btn btn-primary w-100">
-                      Submit
-                    </button>
-                  </div>
-                </form>
-              </div> */}
 
               {/* CEP */}
               <div className="tab-pane fade" id="education">

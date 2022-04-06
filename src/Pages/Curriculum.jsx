@@ -38,7 +38,7 @@ const initial_stateCLL = {
   'project_date' : '',
   'academic_year' : '',
   'project_url' : '',
-  'relative_doc' :''
+  'supporting_document' :''
 }
 
 const impact_area_options = [
@@ -156,19 +156,22 @@ const Curriculum = () => {
   const handleSubmitCLL = (e) => {
     e.preventDefault();
     console.log(stateCLL);
-    
+    const uploadData = new FormData();
+    // uploadData.append(...state);
+    for (let key in stateCLL) {
+      uploadData.append(key, stateCLL[key]);
+    }
+    console.log("uploadData: ", uploadData);
+
     fetch(`${URL_SERVER}/curriculum/campusaslivinglab/`, {
         method: 'POST',
-        headers: {  'Content-Type': 'application/json' },
-        body: JSON.stringify(stateCLL)
-        // body: state
+        body: uploadData
     })
     .then(data => data.json())
     .then(data => {
-        // console.log(data.token);
         console.log(data)
         setStateCLL(initial_stateCLL)
-        // alert('Form Submitted Successfully!!')
+        alert('Form Submitted Successfully!!')
     })
     .catch(err => {
         alert('Form Submission Failed!!')
@@ -463,6 +466,8 @@ const Curriculum = () => {
                       type="file"
                       className="form-control"
                       id="inputEmail4"
+                      name="supporting_document"
+                      onChange={(evt) => setStateCLL({ ...stateCLL, supporting_document: evt.target.files[0] })}
                     />
                   </div>
 

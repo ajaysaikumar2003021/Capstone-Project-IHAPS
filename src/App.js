@@ -19,6 +19,7 @@ import AcademicPrograms from "./Reports/AcademicPrograms";
 import CampusAsLL from "./Reports/Campusaslivinglab";
 import FacultyResearchService from "./Reports/FacultyResearchService";
 import PeertoPeer from "./Reports/PeertoPeer";
+import BasicDocument  from "./Pdfs/AcademicCourses";
 function App() {
   return (
     <>
@@ -45,7 +46,7 @@ function App() {
           <Route path="/report-campus-as-living-lab" element={<CampusAsLL />}/>
           <Route path="/report-faculty-research-service" element={<FacultyResearchService />}/>
           <Route path="/report-peer-to-peer" element={<PeertoPeer/>}/>
-
+          {/* <Route path="/basic-document" element={<BasicDocument />} /> */}
         </Routes>
         <Footer />
       </BrowserRouter>
