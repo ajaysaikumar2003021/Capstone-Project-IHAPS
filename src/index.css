@@ -1,8 +1,7 @@
-.root
-{
+.root {
   --merriweather: "Merriweather", serif;
-
-}body {
+}
+body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -10,7 +9,14 @@
   font-family: var(--merriweather);
 }
 
-
+button[type="submit"]
+{
+  background-color: #0078ae;
+}
+button[type="submit"]:hover
+{
+  background-color: #0078ae;
+}
 
 /* Header */
 .header {
@@ -36,12 +42,15 @@
 .head-item ul li {
   padding: 5px;
 }
+.head-item .nav-link {
+  color: #000000;
+}
 .head-item ul li a {
-  color: #0078ae !important;
+  color: #000000 !important;
   font-weight: bold;
 }
 .head-item ul li a:hover {
-  background-color: #0078ae;
+  background-color: #01638f;
   color: #ffff !important;
 }
 
@@ -200,9 +209,8 @@
 .tab-workgroup {
   padding: 20px;
 }
-.tab-workgroup-list .nav-item a
-{
-  color:black;
+.tab-workgroup-list .nav-item a {
+  color: black;
   font-weight: bold;
 }
 .tab-workgroup-list .nav-item .nav-link.active {

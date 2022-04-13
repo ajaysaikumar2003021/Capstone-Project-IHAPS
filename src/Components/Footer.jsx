@@ -24,7 +24,10 @@ const Footer = () => {
           >
             <h4 className="fw-bold">University of Houston Clear Lake</h4>
             <p className="fw-bold">
-              <a href="https://www.uhcl.edu/sustainability/">
+              <a
+                href="https://www.uhcl.edu/sustainability/"
+                style={{ color: "#0078AE", textDecoration:"None" }}
+              >
                 Institute for Human and Planetary Sustainability
               </a>
             </p>

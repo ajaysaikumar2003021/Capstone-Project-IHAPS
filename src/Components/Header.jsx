@@ -3,7 +3,7 @@ import { Outlet, Link } from "react-router-dom";
 const Header = () => {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light header">
+      <nav className="navbar navbar-expand-lg header">
         <div className="container-fluid">
           <img
             className="navbar-brand logo"
