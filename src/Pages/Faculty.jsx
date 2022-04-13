@@ -101,7 +101,7 @@ const Faculty = () => {
                   </div>
                   <div className="col-md-6">
                     <label for="inputEmail4" className="form-label fw-bold">
-                      Faculty Name(Who Conducts sustainability research)
+                      Faculty Name(who conducts sustainability research)
                     </label>
                     <input
                       type="text"
@@ -270,7 +270,7 @@ const Faculty = () => {
                   <div className="col-md-6">
                     <label for="inputPassword4" className="form-label fw-bold">
                       Presented Research at a Higher Education sustainability
-                      conference ? access repository ?
+                      conference ?
                     </label>
                     <div className="form-check ">
                       <input

@@ -61,7 +61,7 @@ const Transportation = () => {
   return (
     <>
       <div className="container-fluid">
-        <h2 className="curriculum-head">AIR AND TRANSPORTATION FORMS</h2>
+        <h2 className="curriculum-head">AIR AND TRANSPORTATION</h2>
 
         <div className="row" style={{ padding: "15px" }}>
           <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 tab-workgroup">

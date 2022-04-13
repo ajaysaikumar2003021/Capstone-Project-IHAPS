@@ -54,7 +54,7 @@ const Food = () => {
     <>
       <div className="container-fluid">
         <h2 className="curriculum-head">
-          Food And Waste (And Purchasing Forms)
+          Food And Waste
         </h2>
 
         <div className="row" style={{ padding: "15px" }}>
@@ -245,7 +245,7 @@ const Food = () => {
 
                   <div className="col-md-6">
                     <label for="inputState" className="form-label fw-bold">
-                      Offered by what type of Food Service Prodiver or Source
+                    Offered by what type of Food Service Provider or Source
                     </label>
                     <select 
                       id="inputState" 

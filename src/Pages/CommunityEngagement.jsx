@@ -438,8 +438,7 @@ const CommunityEngagement = () => {
 
                   <div className="col-md-6">
                     <label for="inputState" className="form-label fw-bold">
-                      Target Audience(s) Group, Program or Initiatve: (Select
-                      all that apply)
+                    Target Audience(s) Group, Program or Initiative: (Select all that apply)
                     </label>
                     <select id="inputState" className="form-select"
                       name="target_audience"

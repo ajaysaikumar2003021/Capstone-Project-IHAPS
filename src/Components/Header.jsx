@@ -35,12 +35,12 @@ const Header = () => {
                 </li>
                 <li className="nav-item head-item">
                   <Link to="/about-ihaps" className="nav-link">
-                    About IHAPS
+                    About us
                   </Link>
                 </li>
                 <li className="nav-item head-item">
                   <Link className="nav-link" to="/executive-director">
-                    Executive Director
+                  About SAC
                   </Link>
                 </li>
 
@@ -53,7 +53,7 @@ const Header = () => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    WorkGroups
+                    Sustainability Forms
                   </a>
                   <ul
                     className="dropdown-menu"
@@ -74,7 +74,7 @@ const Header = () => {
                         className="dropdown-item"
                         to="/community-engagement"
                       >
-                        Community Engagement
+                        Campus and Community Engagement
                       </Link>
                     </li>
                     <li>
@@ -111,12 +111,12 @@ const Header = () => {
                   >
                     <li>
                       <Link className="dropdown-item" to="/report-academic-courses">
-                        Academic Courses
+                      Sustainability Courses
                       </Link>
                     </li>
                     <li>
                       <Link className="dropdown-item" to="/report-academic-programs">
-                        Academic Programs
+                      Sustainability Programs
                       </Link>
                     </li>
                     <li>
@@ -138,7 +138,7 @@ const Header = () => {
                 </li>
                 <li className="nav-item head-item">
                   <Link className="nav-link" to="/login">
-                    Login/Signup
+                    Login
                   </Link>
                 </li>
               </ul>

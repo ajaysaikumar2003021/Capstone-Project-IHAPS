@@ -1,14 +1,20 @@
-body {
+.root
+{
+  --merriweather: "Merriweather", serif;
+
+}body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif !important;
+  font-family: var(--merriweather);
 }
+
+
 
 /* Header */
 .header {
-  border-bottom: 3px solid #047bad;
+  border-bottom: 3px solid #0078ae;
 }
 .logo {
   width: 8%;
@@ -17,25 +23,25 @@ body {
 .head-item {
   margin-right: 50px !important;
   font-size: 18px;
-  color: #047bad;
+  color: #0078ae;
   font-weight: 1000;
 }
 .head-item a:hover {
-  background-color: #047bad;
+  background-color: #0078ae;
   color: #ffff !important;
 }
 .head-item ul {
-  border: 1px solid #047bad !important;
+  border: 1px solid #0078ae !important;
 }
 .head-item ul li {
   padding: 5px;
 }
 .head-item ul li a {
-  color: #047bad !important;
+  color: #0078ae !important;
   font-weight: bold;
 }
 .head-item ul li a:hover {
-  background-color: #047bad;
+  background-color: #0078ae;
   color: #ffff !important;
 }
 
@@ -72,7 +78,7 @@ body {
 }
 .mission-head {
   font-weight: bold;
-  color: #047bad;
+  color: #0078ae;
   text-align: center;
 }
 .mission-para {
@@ -87,7 +93,7 @@ body {
   margin-top: 100px;
 }
 .dimension-head {
-  color: #047bad;
+  color: #0078ae;
   font-weight: bold;
 }
 .dimension-main {
@@ -100,10 +106,9 @@ body {
 .dimension-card img {
   width: 70%;
 }
-.dimension-title
-{
+.dimension-title {
   font-weight: bold;
-  color: #047bad;
+  color: #0078ae;
   text-align: center;
 }
 /* Four Dimension */
@@ -119,7 +124,7 @@ body {
 }
 .social-links li {
   font-size: 20px;
-  color: #047bad !important;
+  color: #0078ae !important;
   border: none !important;
   background-color: #f1f1f1 !important;
 }
@@ -127,13 +132,16 @@ body {
   margin-top: 10px;
   margin-bottom: 20px;
 }
+.footer-logo {
+  width: 150px;
+}
 /* Footer */
 
 /* About IHAPS */
 .head-about {
   font-weight: bold;
   color: #ffff;
-  background-color: #047bad;
+  background-color: #0078ae;
 }
 .objective-main {
   margin-top: 15px;
@@ -161,7 +169,7 @@ body {
 }
 .director-head {
   text-align: center;
-  background-color: #047bad;
+  background-color: #0078ae;
   color: #ffff;
   padding: 10px;
   font-weight: bold;
@@ -192,8 +200,13 @@ body {
 .tab-workgroup {
   padding: 20px;
 }
-.tab-workgroup-list li a:active {
-  background-color: #047bad;
+.tab-workgroup-list .nav-item a
+{
+  color:black;
+  font-weight: bold;
+}
+.tab-workgroup-list .nav-item .nav-link.active {
+  background-color: #0078ae;
   color: #ffff;
 }
 
@@ -201,7 +214,7 @@ body {
 .curriculum-head {
   text-align: center;
   margin-top: 15px;
-  background-color: #047bad;
+  background-color: #0078ae;
   color: #ffff;
   font-weight: bold;
   padding: 15px;
@@ -215,7 +228,7 @@ body {
 .head-academic {
   text-align: center;
   margin-bottom: 15px;
-  background-color: #047bad;
+  background-color: #0078ae;
   color: #ffff;
   padding: 10px;
   font-weight: bold;
@@ -238,13 +251,11 @@ body {
   border-radius: 10px;
 }
 /* Login */
-.report-curriculum
-{
+.report-curriculum {
   margin-top: 50px;
 }
-.table-curriculum
-{
-  border: 2px solid #047bad !important;
+.table-curriculum {
+  border: 2px solid #0078ae !important;
 }
 @media screen and (max-width: 992px) {
   .logo {
@@ -253,5 +264,8 @@ body {
   }
   .form-login {
     width: 100% !important;
+  }
+  .right-foot {
+    margin-top: 20px !important;
   }
 }

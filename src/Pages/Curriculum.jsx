@@ -2,8 +2,55 @@ import React, { useState, useEffect } from "react";
 import CreatableSelect from 'react-select/creatable';
 import { URL_SERVER } from "../serverurl";
 
+let departments= {
+  "College of Science and Engineering": [
+    "Biology and Biotechnology",
+    "Computing Sciences",
+    "Engineering",
+    "Environmental Science",
+    "Mathematics and Statistics",
+    "Physical and Applied Sciences"
+
+  ],
+  "College of Business": [
+    "Accounting",
+    "Decision Sciences, Economics, Finance and Marketing",
+    "Healthcare Administration",
+    "Management",
+    "Management Information Systems"
+  ],
+  "College of Education": [
+    "Counseling, Special Education and Diversity",
+    "Curriculum and Instruction",
+    "Educational Leadership and Policy Analysis",
+    "Literacy, Library and Learning Technologies"
+
+  ],
+  "College of Human Sciences and Humanities": [
+    "Clinical, Health, and Applied Sciences",
+    "Communication and Studio Arts",
+    "Liberal Arts",
+    "Psychology",
+    "Social and Cultural Sciences"
+
+  ]
+}
+
+function getColleges(){
+  const colleges = [];
+  for(const c in departments){
+    colleges.push(c)
+  }
+  return colleges;
+}
+
+function getDepartments(college){
+  return departments[college];
+}
+
 const initial_stateAC = {
   sust_course_title: '',
+  college_or_unit : '',
   department : '',
   level_of_course : '',
   course_type : '',
@@ -13,9 +60,11 @@ const initial_stateAC = {
 
 }
 
+
 const initial_stateAP = {
   'sust_focused_academic_program' : '',
     'college_or_unit' : '',
+    'department': '', 
     'level_of_program' : '',
     'program_type' : '',
     'description' : '',
@@ -195,7 +244,7 @@ const Curriculum = () => {
                   className="nav-link active"
                   data-bs-toggle="tab"
                 >
-                  Sustainable Courses
+                  Sustainability Courses
                 </a>
               </li>
               <br />
@@ -207,7 +256,7 @@ const Curriculum = () => {
               <br />
               <li className="nav-item">
                 <a href="#messages" className="nav-link" data-bs-toggle="tab">
-                  Sustainable Programs
+                Sustainability Programs
                 </a>
               </li>
             </ul>
@@ -216,7 +265,7 @@ const Curriculum = () => {
             <div className="tab-content">
             {/* academic cources */}
               <div className="tab-pane fade show active" id="home">
-                <h4 className="mt-2 head-academic">Academic Courses</h4>
+                <h4 className="mt-2 head-academic">Sustainability Courses</h4>
                 <form className="row g-3">
                   <div className="col-md-6">
                     <label for="inputEmail4" className="form-label fw-bold">
@@ -233,20 +282,38 @@ const Curriculum = () => {
                   </div>
                   <div className="col-md-6">
                     <label for="inputState" className="form-label fw-bold">
+                      College/Unit
+                    </label>
+                    <select id="inputState" className="form-select"
+                      name="college_or_unit"
+                      onChange={handleInputChangeAC}
+                      value={stateAC.college_or_unit}
+                    >
+                      <option selected>Choose...</option>
+                      
+                      {
+                        getColleges().map((c, i) =>(
+                          <option key={i} value={c}>{c}</option>
+                        ))
+                      }
+                    </select>
+                  </div>
+                  <div className="col-md-6">
+                    <label for="inputState" className="form-label fw-bold">
                       Department
                     </label>
-                    <select 
-                      id="inputState" 
-                      className="form-select"
+                    <select id="inputState" className="form-select"
                       name="department"
-                      value={stateAC.department}
                       onChange={handleInputChangeAC}
-                      >
-                      <option>Choose...</option>
-                      <option selected value="College of Science">College of Science</option>
-                      <option value="College of Education">College of Education</option>
-                      <option value="College of Business">College of Business</option>
-                      <option value="College of Humanity Sciences">College of Humanity Sciences</option>
+                      value={stateAC.department}
+                    >
+                      <option selected>Choose...</option>
+                    
+                      {
+                        getDepartments(stateAC.college_or_unit)?.map((d, i) =>(
+                          <option key={i} value={d}>{d}</option>
+                        ))
+                      }
                     </select>
                   </div>
                   <div className="col-md-6">
@@ -460,7 +527,7 @@ const Curriculum = () => {
 
                   <div className="col-md-6">
                     <label className="form-label fw-bold">
-                      Upload Relevant Docs
+                      Upload Relevant Documents
                     </label>
                     <input
                       type="file"
@@ -512,7 +579,7 @@ const Curriculum = () => {
 
               {/* academic program */}
               <div className="tab-pane fade" id="messages">
-                <h4 className="mt-2 head-academic">Academic Progress</h4>
+                <h4 className="mt-2 head-academic">Sustainability Programs</h4>
                 <form className="row g-3">
                   <div className="col-md-6">
                     <label for="inputEmail4" className="form-label fw-bold">
@@ -534,13 +601,36 @@ const Curriculum = () => {
                     <select id="inputState" className="form-select"
                       name="college_or_unit"
                       onChange={handleInputChangeAP}
-                      value={stateCLL.college_or_unit}
+                      value={stateAP.college_or_unit}
                     >
                       <option selected>Choose...</option>
-                      <option value="College of Science">College of Science</option>
+                      
+                      {
+                        getColleges().map((c, i) =>(
+                          <option key={i} value={c}>{c}</option>
+                        ))
+                      }
+                    </select>
+                  </div>
+                  <div className="col-md-6">
+                    <label for="inputState" className="form-label fw-bold">
+                      Department
+                    </label>
+                    <select id="inputState" className="form-select"
+                      name="department"
+                      onChange={handleInputChangeAP}
+                      value={stateAP.department}
+                    >
+                      <option selected>Choose...</option>
+                      {/* <option value="College of Science and Engeneering">College of Science and Engeneering</option>
                       <option value="College of Education">College of Education</option>
                       <option value="College of Business">College of Business</option>
-                      <option value="College of Humanity Sciences">College of Humanity Sciences</option>
+                      <option value="College of Humanity Sciences">College of Humanity Sciences</option> */}
+                      {
+                        getDepartments(stateAP.college_or_unit)?.map((d, i) =>(
+                          <option key={i} value={d}>{d}</option>
+                        ))
+                      }
                     </select>
                   </div>
                   <div className="col-md-6">

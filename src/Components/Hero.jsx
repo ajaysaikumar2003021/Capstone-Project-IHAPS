@@ -13,7 +13,7 @@ const Hero = () => {
                   onInit={(typewriter) => {
                     typewriter
                       .typeString(
-                        "<h1 class='text-center fw-bold' style='color:#047bad'>INSTITUE FOR HUMAN AND PLANETARY SUSTAINABILITY</h1>"
+                        "<h1 class='text-center fw-bold' style='color:#047bad'>INSTITUTE FOR HUMAN AND PLANETARY SUSTAINABILITY</h1>"
                       )
                       .pauseFor(2500)
                       .start();

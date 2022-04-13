@@ -18,7 +18,7 @@ const FourDimension = () => {
               <div className="card-body">
                 <h5 className="card-title dimension-title">SOCIAL</h5>
                 <p className="card-text text-center">
-                  Creates diverse, eqitable, and inclusive societies that enable
+                  Creates diverse, equitable, and inclusive societies that enable
                   access, support wellness, improve quality of life, and
                   increase citizen engagement.
                 </p>
@@ -52,9 +52,7 @@ const FourDimension = () => {
               <div className="card-body">
                 <h5 className="card-title dimension-title">ENVIRONMENTAL</h5>
                 <p className="card-text text-center">
-                  Protects, restores, and promotes ecosystems that prevent or
-                  mitigate vulnerbilities and harmful impacts to environmental
-                  resillience
+                Protects, restores, and promotes ecosystems that prevent or mitigate vulnerabilities and harmful impacts to environmental resilience.
                 </p>
               </div>
             </div>
@@ -69,10 +67,7 @@ const FourDimension = () => {
               <div className="card-body">
                 <h5 className="card-title dimension-title">EDUCATIONAL</h5>
                 <p className="card-text text-center">
-                  Enhances the sharing and development of knowledge and
-                  experiences that suppport the other dimensions and creates a
-                  culture of continuous improvement, collaboration, and
-                  innovation.
+                Enhances the sharing and development of knowledge and experiences that support the other dimensions and creates a culture of continuous improvement, collaboration, and innovation.
                 </p>
               </div>
             </div>

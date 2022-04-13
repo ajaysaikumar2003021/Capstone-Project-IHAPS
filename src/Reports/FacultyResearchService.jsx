@@ -40,7 +40,7 @@ const FacultyResearchService = () => {
         <table class="table table-striped table-bordered table-curriculum">
           <thead>
             <tr>
-              <th scope="col">Query</th>
+              <th scope="col">Outcomes</th>
               <th scope="col">Result</th>
             </tr>
           </thead>

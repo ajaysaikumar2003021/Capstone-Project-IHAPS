@@ -20,12 +20,12 @@ const AcademicCourses = () => {
 
   return (
     <div className="container-fluid">
-      <h2 className="curriculum-head">Report Academic Programs</h2>
+      <h2 className="curriculum-head">Sustainability Programs Outcomes</h2>
       <div className="container report-curriculum">
         <table class="table table-striped table-bordered table-curriculum">
           <thead>
             <tr>
-              <th scope="col">Query</th>
+              <th scope="col">Outcomes</th>
               <th scope="col">Result</th>
             </tr>
           </thead>
