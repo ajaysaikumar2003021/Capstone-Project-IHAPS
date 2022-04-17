@@ -84,7 +84,7 @@ const CampusAsLL = () => {
                     return(
                         <dl>
                         <dt>{ key }</dt>
-                        <dd>{ state.data['2'][key] }</dd>
+                        <dd>{ state.data['3'][key] }</dd>
                         </dl>
                     )
                 }): 0}
@@ -92,6 +92,12 @@ const CampusAsLL = () => {
             </tr>
 
           </tbody>
+          <tfoot>
+            <tr>
+              <td>Last Updated AT</td>
+              <td>{state.data? state.data['4']: "No Time Stamp Found"}</td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     </div>

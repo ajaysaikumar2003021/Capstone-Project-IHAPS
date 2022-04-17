@@ -68,6 +68,12 @@ const AcademicCourses = () => {
               <td>{state.data? state.data['8']: 0}</td>
             </tr>
           </tbody>
+          <tfoot>
+            <tr>
+              <td>Last Updated AT</td>
+              <td>{state.data? state.data['9']: "No Time Stamp Found"}</td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     </div>

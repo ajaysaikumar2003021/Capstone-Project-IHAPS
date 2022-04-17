@@ -19,7 +19,7 @@ const Header = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <i className="bi bi-list" style={{color:"black !important",fontSize:"25px"}}></i>
           </button>
           <div className="collapse navbar-collapse" id="navbarText">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
@@ -39,7 +39,8 @@ const Header = () => {
                   </Link>
                 </li>
                 <li className="nav-item head-item">
-                  <Link className="nav-link" to="/executive-director">
+                  {/* <Link className="nav-link" to="/executive-director"> */}
+                  <Link className="nav-link" to="#">
                   About SAC
                   </Link>
                 </li>
@@ -126,7 +127,7 @@ const Header = () => {
                     </li>
                     <li>
                       <a className="dropdown-item" href="/report-faculty-research-service">
-                        Faculy Sustainability Research and Service
+                        Faculty Sustainability Research and Service
                       </a>
                     </li>
                     <li>

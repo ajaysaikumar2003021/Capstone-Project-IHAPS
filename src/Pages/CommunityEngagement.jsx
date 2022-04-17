@@ -6,7 +6,9 @@ const initial_statePTPO = {
   'reporting_date': '',
   'peer_to_peer_outreach_type': '',
   'peer_to_peer_outreach_title': '',
-  'poc': '',
+  'poc_name' : '',
+  'poc_email' : '',
+  'poc_phone' : '',
   'description': '',
   'educators_training': '',
   'target_audience': '',
@@ -25,7 +27,9 @@ const initial_stateSSGPI = {
   'student_sust_grp_prog_initiative_type': '',
   'student_sust_grp_prog_initiative_title': '',
   'description': '',
-  'poc': '',
+  'poc_name' : '',
+  'poc_email' : '',
+  'poc_phone' : '',
   'target_audience': '',
   'description_of_measureable_impacts': '',
   'supporting_outreach_materials': '',
@@ -51,7 +55,9 @@ const initial_stateSPD = {
   'dates_offered' : '',
   'num_of_staff_participants' : '',
   'internally_or_externally_funded' : '',
-  'poc' : '',
+  'poc_name' : '',
+  'poc_email' : '',
+  'poc_phone' : '',
   'staff_professional_development_url' : '',
   'supporting_document' : ''
 }
@@ -60,7 +66,9 @@ const initial_stateCEP = {
   'reporting_date': '',
   'ce_program_title' : '',
   'description' : '',
-  'poc' : '',
+  'poc_name' : '',
+  'poc_email' : '',
+  'poc_phone' : '',
   'semester_program_started' : '',
   'year_program_started' : '',
   'program_status' : ''
@@ -74,7 +82,9 @@ const initial_stateCP = {
   'timeframe' : '',
   'type_of_partnership' : '',
   'vulnerable_population_engagement' : '',
-  'poc' : '',
+  'poc_name' : '',
+  'poc_email' : '',
+  'poc_phone' : '',
   'community_partnership_url' : ''
 }
 
@@ -175,15 +185,21 @@ const CommunityEngagement = () => {
         // body: JSON.stringify(PTPO)
         body: uploadData
     })
-    .then(data => data.json())
     .then(data => {
-        // console.log(data.token);
+      if(data.ok){
+        alert('Form Submitted Successfully!!')
+        return data.json()
+      }
+      else{
+        throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
+      }
+    })
+    .then(data => {
         console.log(data)
         setPTPO(initial_statePTPO)
-        alert('Form Submitted Successfully!!')
     })
     .catch(err => {
-        alert('Form Submission Failed!!')
+        alert(err)
         console.log(err)
     })
     
@@ -207,15 +223,21 @@ const CommunityEngagement = () => {
         // body: JSON.stringify(SSGPI)
         body: uploadData
     })
-    .then(data => data.json())
     .then(data => {
-        // console.log(data.token);
+      if(data.ok){
+        alert('Form Submitted Successfully!!')
+        return data.json()
+      }
+      else{
+        throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
+      }
+    })
+    .then(data => {
         console.log(data)
         setSSGPI(initial_stateSSGPI)
-        alert('Form Submitted Successfully!!')
     })
     .catch(err => {
-        alert('Form Submission Failed!!')
+        alert(err)
         console.log(err)
     })
     
@@ -230,15 +252,21 @@ const CommunityEngagement = () => {
         headers: {  'Content-Type': 'application/json' },
         body: JSON.stringify(CEC)
     })
-    .then(data => data.json())
     .then(data => {
-        // console.log(data.token);
+      if(data.ok){
+        alert('Form Submitted Successfully!!')
+        return data.json()
+      }
+      else{
+        throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
+      }
+    })
+    .then(data => {
         console.log(data)
         setCEC(initial_stateCEC)
-        alert('Form Submitted Successfully!!')
     })
     .catch(err => {
-        alert('Form Submission Failed!!')
+        alert(err)
         console.log(err)
     })
     
@@ -262,15 +290,21 @@ const CommunityEngagement = () => {
         // body: JSON.stringify(SPD)
         body: uploadData
     })
-    .then(data => data.json())
     .then(data => {
-        // console.log(data.token);
+      if(data.ok){
+        alert('Form Submitted Successfully!!')
+        return data.json()
+      }
+      else{
+        throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
+      }
+    })
+    .then(data => {
         console.log(data)
         setSPD(initial_stateSPD)
-        alert('Form Submitted Successfully!!')
     })
     .catch(err => {
-        alert('Form Submission Failed!!')
+        alert(err)
         console.log(err)
     })
     
@@ -285,15 +319,21 @@ const CommunityEngagement = () => {
         headers: {  'Content-Type': 'application/json' },
         body: JSON.stringify(CEP)
     })
-    .then(data => data.json())
     .then(data => {
-        // console.log(data.token);
+      if(data.ok){
+        alert('Form Submitted Successfully!!')
+        return data.json()
+      }
+      else{
+        throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
+      }
+    })
+    .then(data => {
         console.log(data)
         setCEP(initial_stateCEP)
-        alert('Form Submitted Successfully!!')
     })
     .catch(err => {
-        alert('Form Submission Failed!!')
+        alert(err)
         console.log(err)
     })
     
@@ -308,15 +348,21 @@ const CommunityEngagement = () => {
         headers: {  'Content-Type': 'application/json' },
         body: JSON.stringify(CP)
     })
-    .then(data => data.json())
     .then(data => {
-        // console.log(data.token);
+      if(data.ok){
+        alert('Form Submitted Successfully!!')
+        return data.json()
+      }
+      else{
+        throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
+      }
+    })
+    .then(data => {
         console.log(data)
         setCP(initial_stateCP)
-        alert('Form Submitted Successfully!!')
     })
     .catch(err => {
-        alert('Form Submission Failed!!')
+        alert(err)
         console.log(err)
     })
     
@@ -376,7 +422,7 @@ const CommunityEngagement = () => {
                   Student Sustainability Groups, Programs and Initiatives
                 </h4>
                 <form className="row g-3">
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Reporting Date (Academic Year)
                     </label>
@@ -389,7 +435,7 @@ const CommunityEngagement = () => {
                       onChange={handleInputChangeSSGPI}
                     />
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       Type of Student Sustainability Groups, Programs, and
                       Initiatives (Select One)
@@ -407,7 +453,7 @@ const CommunityEngagement = () => {
                     </select>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Groups, Programs, and Initiative Name
                     </label>
@@ -421,7 +467,7 @@ const CommunityEngagement = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Brief Description/Mission of the Group, Program, or
                       Initiative
@@ -436,7 +482,7 @@ const CommunityEngagement = () => {
                     ></textarea>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                     Target Audience(s) Group, Program or Initiative: (Select all that apply)
                     </label>
@@ -454,7 +500,7 @@ const CommunityEngagement = () => {
                     </select>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Brief Description of the Measurable Impacts and/or
                       Positive Results (required for outreach campaigns):
@@ -469,7 +515,7 @@ const CommunityEngagement = () => {
                     ></textarea>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputPassword4" className="form-label fw-bold">
                       Any supporting outreach materials and publications?
                     </label>
@@ -500,9 +546,10 @@ const CommunityEngagement = () => {
                       </label>
                     </div>
                   </div>
-                  <div className="col-md-6">
+                  {(SSGPI.supporting_outreach_materials === "True") ? (
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
-                      If yes, provide a description
+                      Provide a description
                     </label>
                     <textarea
                       type="text"
@@ -512,22 +559,50 @@ const CommunityEngagement = () => {
                       onChange={handleInputChangeSSGPI}
                     ></textarea>
                   </div>
-                  <div className="col-md-6">
-                    <label for="inputEmail4" className="form-label fw-bold">
-                      Program POC
-                    </label>
-                    <select  className="form-select"
-                      name="poc"
-                      value={SSGPI.poc}
-                      onChange={handleInputChangeSSGPI}
-                    >
-                      <option selected>Choose...</option>
-                      {POC? POC.map(poc => (
-                        <option key={poc.id} value={poc.id}>{poc.name}</option>
-                      )): null}
-                    </select>
+                  ) : null }
+                  {/* POC UPDATE */}
+                  
+                  <div className="col-md-12">
+                  <label for="inputEmail4" className="form-label fw-bold">
+                    POC Name
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="inputEmail4"
+                    name="poc_name"
+                    value={SSGPI.poc_name}
+                    onChange={handleInputChangeSSGPI}
+                  ></input>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
+                  <label for="inputEmail4" className="form-label fw-bold">
+                    POC Email
+                  </label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="inputEmail4"
+                    name="poc_email"
+                    value={SSGPI.poc_email}
+                    onChange={handleInputChangeSSGPI}
+                  ></input>
+                  </div>
+                  <div className="col-md-12">
+                  <label for="inputEmail4" className="form-label fw-bold">
+                    POC Phone
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="inputEmail4"
+                    name="poc_phone"
+                    value={SSGPI.poc_phone}
+                    onChange={handleInputChangeSSGPI}
+                  ></input>
+                  </div>
+                  {/* POC UPDATE */}
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       URL (If available)
                     </label>
@@ -540,7 +615,7 @@ const CommunityEngagement = () => {
                     ></textarea>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Supporting Documents (Optional)
                     </label>
@@ -566,7 +641,7 @@ const CommunityEngagement = () => {
               <div className="tab-pane fade" id="profile">
                 <h4 className="mt-2 head-academic">Peer-to-Peer Outreach</h4>
                 <form className="row g-3">
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Reporting Date (Academic Year)
                     </label>
@@ -578,7 +653,7 @@ const CommunityEngagement = () => {
                       onChange={handleInputChangePTPO}
                     />
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       Peer-to-Peer Sustainability outreach and Education Program
                       Type
@@ -594,7 +669,7 @@ const CommunityEngagement = () => {
                     </select>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Peer-to-Peer Sustainability outreach and Education Program
                       Name
@@ -608,23 +683,50 @@ const CommunityEngagement = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
-                    <label for="inputEmail4" className="form-label fw-bold">
-                      Program POC
-                    </label>
-                    <select id="inputState" className="form-select"
-                      name="poc"
-                      value={PTPO.poc}
-                      onChange={handleInputChangePTPO}
-                    >
-                      <option selected>Choose...</option>
-                      {POC? POC.map((poc) => (
-                        <option key={poc.id} value={poc.id}>{poc.name}</option>
-                      )) : null}
-                    </select>
+                  {/* POC UPDATE */}
+                                    
+                  <div className="col-md-12">
+                  <label for="inputEmail4" className="form-label fw-bold">
+                    POC Name
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="inputEmail4"
+                    name="poc_name"
+                    value={PTPO.poc_name}
+                    onChange={handleInputChangePTPO}
+                  ></input>
                   </div>
+                  <div className="col-md-12">
+                  <label for="inputEmail4" className="form-label fw-bold">
+                    POC Email
+                  </label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="inputEmail4"
+                    name="poc_email"
+                    value={PTPO.poc_email}
+                    onChange={handleInputChangePTPO}
+                  ></input>
+                  </div>
+                  <div className="col-md-12">
+                  <label for="inputEmail4" className="form-label fw-bold">
+                    POC Phone
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="inputEmail4"
+                    name="poc_phone"
+                    value={PTPO.poc_phone}
+                    onChange={handleInputChangePTPO}
+                  ></input>
+                  </div>
+                  {/* POC UPDATE */}
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       A Brief description of the Program
                     </label>
@@ -637,7 +739,7 @@ const CommunityEngagement = () => {
                     ></textarea>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       How are the peer educators trained
                     </label>
@@ -650,7 +752,7 @@ const CommunityEngagement = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Program's target audience(s)
                     </label>
@@ -663,7 +765,7 @@ const CommunityEngagement = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Semester/Year Program Started
                     </label>
@@ -676,7 +778,7 @@ const CommunityEngagement = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       Is the Program Active or Inactive?
                     </label>
@@ -691,7 +793,7 @@ const CommunityEngagement = () => {
                     </select>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Number of actively trained Educators(Enter Number)
                     </label>
@@ -703,7 +805,7 @@ const CommunityEngagement = () => {
                       onChange={handleInputChangePTPO}
                     />
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail43" className="form-label fw-bold">
                       Number of weeks the educators program is active annually
                       (Enter Number)
@@ -716,7 +818,7 @@ const CommunityEngagement = () => {
                       onChange={handleInputChangePTPO}
                     />
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Average or expected number of hours worked weekly per
                       trained educator(Enter Number)
@@ -729,7 +831,7 @@ const CommunityEngagement = () => {
                       onChange={handleInputChangePTPO}
                     />
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Total number of hours worked annually by trained educators
                       (Enter Number)
@@ -743,7 +845,7 @@ const CommunityEngagement = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Program URL (if available)
                     </label>
@@ -756,7 +858,7 @@ const CommunityEngagement = () => {
                     ></textarea>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Supporting Documents (Optional)
                     </label>
@@ -783,7 +885,7 @@ const CommunityEngagement = () => {
                   Continuing Education Courses
                 </h4>
                 <form className="row g-3">
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Reporting Date (Academic Year)
                     </label>
@@ -795,7 +897,7 @@ const CommunityEngagement = () => {
                       onChange={handleInputChangeCEC}
                     />
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Continuing Education Sustainability Course Title
                     </label>
@@ -807,7 +909,7 @@ const CommunityEngagement = () => {
                       onChange={handleInputChangeCEC}
                     />
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       Department
                     </label>
@@ -824,7 +926,7 @@ const CommunityEngagement = () => {
                     </select>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Brief Course Description
                     </label>
@@ -837,7 +939,7 @@ const CommunityEngagement = () => {
                     ></textarea>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       Course Type
                     </label>
@@ -852,7 +954,7 @@ const CommunityEngagement = () => {
                     </select>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       Semester Offered
                     </label>
@@ -868,7 +970,7 @@ const CommunityEngagement = () => {
                     </select>
                   </div>
                   
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Academic Year
                     </label>
@@ -897,7 +999,7 @@ const CommunityEngagement = () => {
                   Staff Professional Development
                 </h4>
                 <form className="row g-3">
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Reporting Date (Academic Year)
                     </label>
@@ -909,7 +1011,7 @@ const CommunityEngagement = () => {
                       onChange={handleInputChangeSPD}
                     />
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Name of Sustainbaility Professional Development or
                       Training Opportunity
@@ -923,7 +1025,7 @@ const CommunityEngagement = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Brief Description of Training
                     </label>
@@ -936,7 +1038,7 @@ const CommunityEngagement = () => {
                     ></textarea>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Date(s) Offered
                     </label>
@@ -949,7 +1051,7 @@ const CommunityEngagement = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Number of Staff Participants (Enter Number)
                     </label>
@@ -962,7 +1064,7 @@ const CommunityEngagement = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       Internally-Offered or Externally-Supported
                     </label>
@@ -978,22 +1080,49 @@ const CommunityEngagement = () => {
                     </select>
                   </div>
 
-                  <div className="col-md-6">
-                    <label for="inputEmail4" className="form-label fw-bold">
-                      POC for Training Program
-                    </label>
-                    <select  className="form-select"
-                      name="poc"
-                      value={SPD.poc}
-                      onChange={handleInputChangeSPD}
-                    >
-                      <option selected>Choose...</option>
-                      {POC? POC.map(poc => (
-                        <option key={poc.id} value={poc.id}>{poc.name}</option>
-                      )): null}
-                    </select>
+                  {/* POC UPDATE */}
+                                    
+                  <div className="col-md-12">
+                  <label for="inputEmail4" className="form-label fw-bold">
+                    POC Name
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="inputEmail4"
+                    name="poc_name"
+                    value={SPD.poc_name}
+                    onChange={handleInputChangeSPD}
+                  ></input>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
+                  <label for="inputEmail4" className="form-label fw-bold">
+                    POC Email
+                  </label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="inputEmail4"
+                    name="poc_email"
+                    value={SPD.poc_email}
+                    onChange={handleInputChangeSPD}
+                  ></input>
+                  </div>
+                  <div className="col-md-12">
+                  <label for="inputEmail4" className="form-label fw-bold">
+                    POC Phone
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="inputEmail4"
+                    name="poc_phone"
+                    value={SPD.poc_phone}
+                    onChange={handleInputChangeSPD}
+                  ></input>
+                  </div>
+                  {/* POC UPDATE */}
+                  <div className="col-md-12">
                     <label className="form-label fw-bold">
                       Supporting Documents (Optional)
                     </label>
@@ -1021,7 +1150,7 @@ const CommunityEngagement = () => {
               <div className="tab-pane fade" id="community">
                 <h4 className="mt-2 head-academic">Community Partnerships</h4>
                 <form className="row g-3">
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Reporting Date (Academic Year)
                     </label>
@@ -1033,7 +1162,7 @@ const CommunityEngagement = () => {
                       onChange={handleInputChangeCP}
                     />
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Name of the institution’s formal community partnership to
                       advance sustainability
@@ -1047,7 +1176,7 @@ const CommunityEngagement = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       A brief description of the institution’s formal community
                       partnership to advance sustainability.
@@ -1061,7 +1190,7 @@ const CommunityEngagement = () => {
                     ></textarea>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputPassword4" className="form-label fw-bold">
                       Does the institution provide financial or material support
                       for the partnership?
@@ -1094,7 +1223,7 @@ const CommunityEngagement = () => {
                     </div>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       Which of the following best describes the partnership
                       timeframe?
@@ -1110,7 +1239,7 @@ const CommunityEngagement = () => {
                     </select>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       Which of the following best describes the partnership?
                     </label>
@@ -1125,7 +1254,7 @@ const CommunityEngagement = () => {
                     </select>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputPassword4" className="form-label fw-bold">
                       Are underrepresented groups and/or vulnerable populations
                       engaged as equal partners (in strategic planning,
@@ -1159,22 +1288,49 @@ const CommunityEngagement = () => {
                     </div>
                   </div>
 
-                  <div className="col-md-6">
-                    <label for="inputEmail4" className="form-label fw-bold">
-                      POC for Partnership (Name, Position, Email)
-                    </label>
-                    <select  className="form-select"
-                      name="poc"
-                      value={CP.poc}
-                      onChange={handleInputChangeCP}
-                    >
-                      <option selected>Choose...</option>
-                      {POC? POC.map(poc => (
-                        <option key={poc.id} value={poc.id}>{poc.name}</option>
-                      )): null}
-                    </select>
+                  {/* POC UPDATE */}
+                  
+                  <div className="col-md-12">
+                  <label for="inputEmail4" className="form-label fw-bold">
+                    POC Name
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="inputEmail4"
+                    name="poc_name"
+                    value={CP.poc_name}
+                    onChange={handleInputChangeCP}
+                  ></input>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
+                  <label for="inputEmail4" className="form-label fw-bold">
+                    POC Email
+                  </label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="inputEmail4"
+                    name="poc_email"
+                    value={CP.poc_email}
+                    onChange={handleInputChangeCP}
+                  ></input>
+                  </div>
+                  <div className="col-md-12">
+                  <label for="inputEmail4" className="form-label fw-bold">
+                    POC Phone
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="inputEmail4"
+                    name="poc_phone"
+                    value={CP.poc_phone}
+                    onChange={handleInputChangeCP}
+                  ></input>
+                  </div>
+                  {/* POC UPDATE */}
+                  <div className="col-md-12">
                     <label className="form-label fw-bold">
                       Website URL (If available)
                     </label>
@@ -1204,7 +1360,7 @@ const CommunityEngagement = () => {
                   Continuing Education Programs
                 </h4>
                 <form className="row g-3">
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Reporting Date (Academic Year)
                     </label>
@@ -1216,7 +1372,7 @@ const CommunityEngagement = () => {
                       onChange={handleInputChangeCEP}
                     />
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Name of the sustainability-focused certificate program
                     </label>
@@ -1229,7 +1385,7 @@ const CommunityEngagement = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Brief Course Description
                     </label>
@@ -1242,23 +1398,50 @@ const CommunityEngagement = () => {
                     ></textarea>
                   </div>
 
-                  <div className="col-md-6">
-                    <label for="inputEmail4" className="form-label fw-bold">
-                      Program POC
-                    </label>
-                    <select  className="form-select"
-                      name="poc"
-                      value={CEP.poc}
-                      onChange={handleInputChangeCEP}
-                    >
-                      <option selected>Choose...</option>
-                      {POC? POC.map(poc => (
-                        <option key={poc.id} value={poc.id}>{poc.name}</option>
-                      )): null}
-                    </select>
+                  {/* POC UPDATE */}
+                                    
+                  <div className="col-md-12">
+                  <label for="inputEmail4" className="form-label fw-bold">
+                    POC Name
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="inputEmail4"
+                    name="poc_name"
+                    value={CEP.poc_name}
+                    onChange={handleInputChangeCEP}
+                  ></input>
                   </div>
+                  <div className="col-md-12">
+                  <label for="inputEmail4" className="form-label fw-bold">
+                    POC Email
+                  </label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="inputEmail4"
+                    name="poc_email"
+                    value={CEP.poc_email}
+                    onChange={handleInputChangeCEP}
+                  ></input>
+                  </div>
+                  <div className="col-md-12">
+                  <label for="inputEmail4" className="form-label fw-bold">
+                    POC Phone
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="inputEmail4"
+                    name="poc_phone"
+                    value={CEP.poc_phone}
+                    onChange={handleInputChangeCEP}
+                  ></input>
+                  </div>
+                  {/* POC UPDATE */}
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold"
                       
                     >
@@ -1276,7 +1459,7 @@ const CommunityEngagement = () => {
                     </select>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       Year Program Started
                     </label>
@@ -1292,7 +1475,7 @@ const CommunityEngagement = () => {
                     </select>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       Program Status
                     </label>

@@ -1,9 +1,4 @@
-
-
 import React, { useState } from "react";
-import Header from "../Components/Header";
-import Footer from "../Components/Footer";
-import serverurl from "../serverurl";
 import {URL_SERVER} from "../serverurl";
 
 const initial_state = {
@@ -45,15 +40,24 @@ const Transportation = () => {
         headers: {  'Content-Type': 'application/json' },
         body: JSON.stringify(state)
     })
-    .then(data => data.json())
     .then(data => {
-        // console.log(data.token);
-        console.log(data)
-        setState(initial_state)
+      if(data.ok){
         alert('Form Submitted Successfully!!')
+        return data.json()
+      }
+      else{
+        // console.log(data)
+        throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
+        // throw new Error("")
+      }
+    })
+    .then(data => {
+          console.log(data)
+          setState(initial_state)
+          
     })
     .catch(err => {
-        alert('Form Submission Failed!!')
+        alert(err)
         console.log(err)
     })
     
@@ -84,7 +88,7 @@ const Transportation = () => {
                   Campus Fleet and Sustainable Transit
                 </h4>
                 <form className="row g-3">
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Reporting Period: Start Date
                     </label>
@@ -97,7 +101,7 @@ const Transportation = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Reporting Period: End Date
                     </label>
@@ -110,7 +114,7 @@ const Transportation = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Total number of vehicles in the institution’s fleet
                     </label>
@@ -123,7 +127,7 @@ const Transportation = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Number of gasoline-only vehicles in the fleet
                     </label>
@@ -136,7 +140,7 @@ const Transportation = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Number of diesel-only vehicles in the fleet
                     </label>
@@ -149,7 +153,7 @@ const Transportation = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Number of gasoline-electric, non-plug-in hybrid vehicles
                       in the fleet
@@ -163,7 +167,7 @@ const Transportation = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Number of diesel-electric, non-plug-in hybrid vehicles in
                       the fleet
@@ -177,7 +181,7 @@ const Transportation = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Number of plug-in hybrid vehicles in the fleet
                     </label>
@@ -190,7 +194,7 @@ const Transportation = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Number of 100 percent electric vehicles (including
                       electric assist utility bicycles and tricycles)
@@ -204,7 +208,7 @@ const Transportation = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Number of vehicles fueled with Compressed Natural Gas
                       (CNG) in the fleet
@@ -218,7 +222,7 @@ const Transportation = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Number of hydrogen fueled vehicles in the fleet
                     </label>
@@ -231,7 +235,7 @@ const Transportation = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Number of vehicles fueled with B20 or higher biofuel for
                       more than 4 months of the year
@@ -245,7 +249,7 @@ const Transportation = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Number of vehicles fueled with locally produced, low-level
                       biofuel (e.g., B5)

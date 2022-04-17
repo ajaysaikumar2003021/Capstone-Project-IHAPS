@@ -36,15 +36,21 @@ const Food = () => {
         headers: {  'Content-Type': 'application/json' },
         body: JSON.stringify(state)
     })
-    .then(data => data.json())
     .then(data => {
-        // console.log(data.token);
+      if(data.ok){
+        alert('Form Submitted Successfully!!')
+        return data.json()
+      }
+      else{
+        throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
+      }
+    })
+    .then(data => {
         console.log(data)
         setState(initial_state)
-        alert('Form Submitted Successfully!!')
     })
     .catch(err => {
-        alert('Form Submission Failed!!')
+        alert(err)
         console.log(err)
     })
     
@@ -78,7 +84,7 @@ const Food = () => {
                   Sustainable Food and Beverage Purchase Inventory
                 </h4>
                 <form className="row g-3">
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Product name, label, or brand
                     </label>
@@ -91,7 +97,7 @@ const Food = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       Product Type (Select One)
                     </label>
@@ -107,7 +113,7 @@ const Food = () => {
                     </select>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputPassword4" className="form-label fw-bold">
                       Single-Ingredient Product
                     </label>
@@ -141,7 +147,7 @@ const Food = () => {
                     </div>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Product Description
                     </label>
@@ -154,7 +160,7 @@ const Food = () => {
                     ></textarea>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Recognized sustainability standard met (e.g., third party
                       certification or ecolabel)
@@ -168,7 +174,7 @@ const Food = () => {
                     ></textarea>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputPassword4" className="form-label fw-bold">
                       Sourced through a short food supply chain (SFSC) that
                       provides full traceability from identified farms, boats,
@@ -204,7 +210,7 @@ const Food = () => {
                     </div>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Reporting Period: Start Date
                     </label>
@@ -217,7 +223,7 @@ const Food = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Reporting Period: End Date
                     </label>
@@ -230,7 +236,7 @@ const Food = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Expenditures for reporting period:
                     </label>
@@ -243,7 +249,7 @@ const Food = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                     Offered by what type of Food Service Provider or Source
                     </label>

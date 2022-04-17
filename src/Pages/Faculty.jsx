@@ -49,14 +49,21 @@ const Faculty = () => {
         method: 'POST',
         body: uploadData
     })
-    .then(data => data.json())
+    .then(data => {
+      if(data.ok){
+        alert('Form Submitted Successfully!!')
+        return data.json()
+      }
+      else{
+        throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
+      }
+    })
     .then(data => {
         console.log(data)
         setState(initial_state)
-        alert('Form Submitted Successfully!!')
     })
     .catch(err => {
-        alert('Form Submission Failed!!')
+        alert(err)
         console.log(err)
     })
     
@@ -87,7 +94,7 @@ const Faculty = () => {
                   Faculty Sustainability Research and Service
                 </h4>
                 <form className="row g-3" enctype="multipart/form-data">
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Reporting Date (Academic Year)
                     </label>
@@ -99,7 +106,7 @@ const Faculty = () => {
                       onChange={handleInputChange}
                     />
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Faculty Name(who conducts sustainability research)
                     </label>
@@ -111,7 +118,7 @@ const Faculty = () => {
                       onChange={handleInputChange}
                     />
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Faculty Email
                     </label>
@@ -124,7 +131,7 @@ const Faculty = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       Departmental Affiliation
                     </label>
@@ -140,7 +147,7 @@ const Faculty = () => {
                       <option value="College of Humanity Sciences">College of Humanity Sciences</option>
                     </select>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       Sustainability Research Areas
                     </label>
@@ -157,7 +164,7 @@ const Faculty = () => {
                       <option value="Educational">Educational</option>
                     </select>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Research interests/topics or a brief description
                       justifying the individual's inclusion
@@ -170,7 +177,7 @@ const Faculty = () => {
                       onChange={handleInputChange}
                     ></textarea>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputPassword4" className="form-label fw-bold">
                       Research published in Peer-Reviewed Journal ?
                     </label>
@@ -217,10 +224,10 @@ const Faculty = () => {
                       </label>
                     </div>
                   </div>
-
-                  <div className="col-md-6">
+                  {(state.peer_reviewed_journal === "yes" || state.peer_reviewed_reviewed === "pending") ? (
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
-                      If Yes or Pending: Provide Publication title, Journal
+                      Provide Publication title, Journal
                       Name, and Date of Publication
                     </label>
                     <textarea
@@ -231,10 +238,12 @@ const Faculty = () => {
                       onChange={handleInputChange}
                     ></textarea>
                   </div>
+                  ) : null}
 
-                  <div className="col-md-6">
+                  {(state.peer_reviewed_journal === "yes" || state.peer_reviewed_journal === "pending") ? (
+                  <div className="col-md-12">
                     <label for="inputPassword4" className="form-label fw-bold">
-                      If Yes, is the publication deposited in a designated open
+                      Is the publication deposited in a designated open
                       access repository ?
                     </label>
                     <div className="form-check ">
@@ -251,6 +260,7 @@ const Faculty = () => {
                         Yes
                       </label>
                     </div>
+                    
                     <div className="form-check">
                       <input
                         className="form-check-input"
@@ -266,8 +276,8 @@ const Faculty = () => {
                       </label>
                     </div>
                   </div>
-
-                  <div className="col-md-6">
+                  ) : null}
+                  <div className="col-md-12">
                     <label for="inputPassword4" className="form-label fw-bold">
                       Presented Research at a Higher Education sustainability
                       conference ?
@@ -301,8 +311,9 @@ const Faculty = () => {
                       </label>
                     </div>
                   </div>
-
-                  <div className="col-md-6">
+                  
+                  {(state.presented_research_at_sust_conference === "True" ) ? (
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       If Yes, Provide a list or brief description of the
                       conferences, presentations, and Dates.
@@ -315,8 +326,9 @@ const Faculty = () => {
                       onChange={handleInputChange}
                     ></textarea>
                   </div>
+                  ) : null}
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputPassword4" className="form-label fw-bold">
                       Serve on a board or committee of an external higher
                       education sustainability network or conference ?
@@ -351,7 +363,8 @@ const Faculty = () => {
                     </div>
                   </div>
 
-                  <div className="col-md-6">
+                  {(state.served_higher_edu === "True" ) ? (
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       If Yes, Provide a list or brief description of the board
                       or committee appointments, and service dates.
@@ -364,8 +377,8 @@ const Faculty = () => {
                       onChange={handleInputChange}
                     ></textarea>
                   </div>
-
-                  <div className="col-md-6">
+                  ) : null}
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Support URL(s) (Optional)
                     </label>
@@ -377,7 +390,7 @@ const Faculty = () => {
                       onChange={handleInputChange}
                     ></textarea>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Supporting Documents (Optional)
                     </label>

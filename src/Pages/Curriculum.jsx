@@ -69,7 +69,9 @@ const initial_stateAP = {
     'program_type' : '',
     'description' : '',
     'website_url' : '',
-    'poc' : '',
+    'poc_name' : '',
+    'poc_email' : '',
+    'poc_phone' : '',
     'adopted_sust_focused_learning_outcome' : '',
     'requires_successful_completion_of_sust_focused_course' : '',
     'semester_program_started' : '',
@@ -80,7 +82,9 @@ const initial_stateAP = {
 
 const initial_stateCLL = {
   'project_name' : '',
-  'poc' : '',
+  'poc_name' : '',
+  'poc_email' : '',
+  'poc_phone' : '',
   'project_type' : '',
   'contribution_to_impact_area' : '',
   'description' : '',
@@ -90,42 +94,65 @@ const initial_stateCLL = {
   'supporting_document' :''
 }
 
-const impact_area_options = [
-  {value: '', label: 'Choose...'},
-  {value: 'Campus Engagement', label: 'Campus Engagement'},
-  {value: 'Public Engagement', label: 'Public Engagement'},
-  {value: 'Air & Climate', label: 'Air & Climate'},
-  {value: 'Buildings', label: 'Buildings'},
-  {value: 'Energy', label: 'Energy'},
-  {value: 'Food & Dining', label: 'Food & Dining'},
-  {value: 'Grounds', label: 'Grounds'},
-  {value: 'Purchasing', label: 'Purchasing'},
-  {value: 'Transportation', label: 'Transportation'},
-  {value: 'Waste', label: 'Waste'},
-  {value: 'Water', label: 'Water'},
-  {value: 'Coordination & Planning', label: 'Coordination & Planning'},
-  {value: 'Diversity & Affordability', label: 'Diversity & Affordability'},
-  {value: 'Investment & Finance', label: 'Investment & Finance'},
-  {value: 'Wellbeing & Work', label: 'Wellbeing & Work'}
-]
+// const impact_area_options = [
+//   {value: '', label: 'Choose...'},
+//   {value: 'Campus Engagement', label: 'Campus Engagement'},
+//   {value: 'Public Engagement', label: 'Public Engagement'},
+//   {value: 'Air & Climate', label: 'Air & Climate'},
+//   {value: 'Buildings', label: 'Buildings'},
+//   {value: 'Energy', label: 'Energy'},
+//   {value: 'Food & Dining', label: 'Food & Dining'},
+//   {value: 'Grounds', label: 'Grounds'},
+//   {value: 'Purchasing', label: 'Purchasing'},
+//   {value: 'Transportation', label: 'Transportation'},
+//   {value: 'Waste', label: 'Waste'},
+//   {value: 'Water', label: 'Water'},
+//   {value: 'Coordination & Planning', label: 'Coordination & Planning'},
+//   {value: 'Diversity & Affordability', label: 'Diversity & Affordability'},
+//   {value: 'Investment & Finance', label: 'Investment & Finance'},
+//   {value: 'Wellbeing & Work', label: 'Wellbeing & Work'}
+// ]
+
+const impact_area_vals = []
+
 const Curriculum = () => {
   const [stateAC, setStateAC] = useState(initial_stateAC);
   const [stateAP, setStateAP] = useState(initial_stateAP);
   const [stateCLL, setStateCLL] = useState(initial_stateCLL);
-  const [POC, setPOC] = useState();
-
-  // const [state, setState] = useState(initial_state);
+  const [stateImp_area, setStateImp_area] = useState([])
+  var impact_area_vals = []
   
-  useEffect(() => {
-    fetch(URL_SERVER + '/curriculum/poc')
-    .then(res => res.json())
-    .then(data => {
-      setPOC(data);
-      // console.log(POC);
-    })
-  }, [])
+  const handleImpactAreaChange = (e) => {
 
+    if (stateImp_area.length < 3 && !stateImp_area.includes(e.target.value)  ) {
+      // impact_area_vals.push(e.target.value)
+      console.log("in if block")
+      setStateImp_area(prev => ([
+          ...prev,
+          e.target.value
+        ]
+      ))
+    }
+    else{
+      console.log("in else block")
+      impact_area_vals = stateImp_area.filter((v) => {
+        return v !== e.target.value;
+      })
+      setStateImp_area(impact_area_vals)
+      // console.log(stateImp_area);
+      // console.log(stateImp_area.includes(e.target.value));
+    }
 
+    console.log(stateImp_area);
+    console.log(stateImp_area.includes(e.target.value));
+  }
+  const check_impact_area_vals = (v) => {
+    console.log(`checking ${v}`);
+    if (impact_area_vals.includes(v))
+      return true
+    else
+      return false
+  }
   const handleInputChangeAC = (e) => {
     console.log(e.target.value);
     console.log("State", stateAC);
@@ -164,15 +191,22 @@ const Curriculum = () => {
         body: JSON.stringify(stateAC)
         // body: state
     })
-    .then(data => data.json())
     .then(data => {
-        // console.log(data.token);
+      if(data.ok){
+        alert('Form Submitted Successfully!!')
+        return data.json()
+      }
+      else{
+        throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
+      }
+    })
+    .then(data => {
+      
         console.log(data)
         setStateAC(initial_stateAC);
-        // alert('Form Submitted Successfully!!')
     })
     .catch(err => {
-        alert('Form Submission Failed!!')
+        alert(err)
         console.log(err)
     })
     
@@ -188,15 +222,21 @@ const Curriculum = () => {
         body: JSON.stringify(stateAP)
         // body: state
     })
-    .then(data => data.json())
     .then(data => {
-        // console.log(data.token);
+      if(data.ok){
+        alert('Form Submitted Successfully!!')
+        return data.json()
+      }
+      else{
+        throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
+      }
+    })
+    .then(data => {
         console.log(data)
         setStateAP(initial_stateAP)
-        // alert('Form Submitted Successfully!!')
     })
     .catch(err => {
-        alert('Form Submission Failed!!')
+        alert(err)
         console.log(err)
     })
     
@@ -207,23 +247,34 @@ const Curriculum = () => {
     console.log(stateCLL);
     const uploadData = new FormData();
     // uploadData.append(...state);
+    stateCLL.contribution_to_impact_area = stateImp_area.join(" , ");
+
     for (let key in stateCLL) {
       uploadData.append(key, stateCLL[key]);
     }
+
     console.log("uploadData: ", uploadData);
 
     fetch(`${URL_SERVER}/curriculum/campusaslivinglab/`, {
         method: 'POST',
         body: uploadData
     })
-    .then(data => data.json())
+    .then(data => {
+      if(data.ok){
+        alert('Form Submitted Successfully!!')
+        return data.json()
+      }
+      else{
+        throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
+      }
+    })
     .then(data => {
         console.log(data)
         setStateCLL(initial_stateCLL)
-        alert('Form Submitted Successfully!!')
+        setStateImp_area([]);
     })
     .catch(err => {
-        alert('Form Submission Failed!!')
+        alert(err)
         console.log(err)
     })
     
@@ -267,7 +318,7 @@ const Curriculum = () => {
               <div className="tab-pane fade show active" id="home">
                 <h4 className="mt-2 head-academic">Sustainability Courses</h4>
                 <form className="row g-3">
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Sustainability Course Title
                     </label>
@@ -280,7 +331,7 @@ const Curriculum = () => {
                       onChange={handleInputChangeAC}
                     />
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       College/Unit
                     </label>
@@ -298,7 +349,7 @@ const Curriculum = () => {
                       }
                     </select>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       Department
                     </label>
@@ -316,7 +367,7 @@ const Curriculum = () => {
                       }
                     </select>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputPassword4" className="form-label fw-bold">
                       Level of Course
                     </label>
@@ -351,7 +402,7 @@ const Curriculum = () => {
                       </label>
                     </div>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       Course Type
                     </label>
@@ -368,7 +419,7 @@ const Curriculum = () => {
                       <option value="None">None</option>
                     </select>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       Semester Offered
                     </label>
@@ -385,7 +436,7 @@ const Curriculum = () => {
                       <option value="Summer">Summer</option>
                     </select>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label className="form-label fw-bold">Year Offered</label>
                     <input
                       type="text"
@@ -424,7 +475,7 @@ const Curriculum = () => {
               <div className="tab-pane fade" id="profile">
                 <h4 className="mt-2 head-academic">Applied Student Learning</h4>
                 <form className="row g-3">
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Project Name
                     </label>
@@ -437,23 +488,52 @@ const Curriculum = () => {
                       onChange={handleInputChangeCLL}
                     />
                   </div>
-                  <div className="col-md-6">
-                    <label for="inputState" className="form-label fw-bold">
-                      POC
+                  
+                  {/* POC UPDATE */}
+                  
+                  <div className="col-md-12">
+                    <label for="inputEmail4" className="form-label fw-bold">
+                      POC Name
                     </label>
-                    <select 
-                      id="inputState" className="form-select"
-                      name="poc"
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="inputEmail4"
+                      name="poc_name"
+                      value={stateCLL.poc_name}
                       onChange={handleInputChangeCLL}
-                      value={stateCLL.poc}  
-                    >
-                      <option selected>Choose...</option>
-                      {POC? POC.map(p => (
-                        <option key={p.id} value={p.id}>{p.name}</option>
-                      )): null}
-                    </select>
+                    ></input>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
+                    <label for="inputEmail4" className="form-label fw-bold">
+                      POC Email
+                    </label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="inputEmail4"
+                      name="poc_email"
+                      value={stateCLL.poc_email}
+                      onChange={handleInputChangeCLL}
+                    ></input>
+                  </div>
+                  <div className="col-md-12">
+                    <label for="inputEmail4" className="form-label fw-bold">
+                      POC Phone
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="inputEmail4"
+                      name="poc_phone"
+                      value={stateCLL.poc_phone}
+                      onChange={handleInputChangeCLL}
+                    ></input>
+                  </div>
+                  {/* POC UPDATE */}
+
+
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Type of Program Project
                     </label>
@@ -466,43 +546,213 @@ const Curriculum = () => {
                       onChange={handleInputChangeCLL}
                     ></input>
                   </div>
-                  <div className="col-md-6">
-                    <label for="inputState" className="form-label fw-bold">
-                      Contributes to the following impact area(s)
+                 
+                  <div className="col-md-12">
+                    <label for="inputPassword4" className="form-label fw-bold">
+                    Contributes to the following impact areas (upto 3 can be selected)
                     </label>
-                    <select id="inputState" className="form-select" 
-                      // multiple="multiple"
-                      name="contribution_to_impact_area"
-                      onChange={handleInputChangeCLL}
-                      value={stateCLL.contribution_to_impact_areas}
-                    >
-                      <option selected>Choose...</option>
-                      <option>Campus Engagement</option>
-                      <option>Public Engagement</option>
-                      <option>Air & Climate</option>
-                      <option>Buildings</option>
-                      <option>Energy</option>
-                      <option>Food & Dining</option>
-                      <option>Grounds</option>
-                      <option>Purchasing</option>
-                      <option>Transportation</option>
-                      <option>Waste</option>
-                      <option>Water</option>
-                      <option>Coordination & Planning</option>
-                      <option>Diversity & Affordability</option>
-                      <option>Investment & Finance</option>
-                      <option>Wellbeing & Work</option>
-                    </select>
-                    {/* <CreatableSelect
-                      isMulti
-                      name="contribution_to_impact_areas"
-                      options={impact_area_options}
-                      onChange={handleInputChangeCLL}
-                      value={stateCLL.contribution_to_impact_areas}
-                    /> */}
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name="imp_area"
+                        value="Campus Engagement"
+                        onChange={handleImpactAreaChange}
+                        checked={stateImp_area.includes("Campus Engagement")}
+                      />
+                      <label className="form-check-label " for="inlineRadio1">
+                      Campus Engagement
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name="imp_area"
+                        value="Public Engagement"
+                        onChange={handleImpactAreaChange}
+                        checked={stateImp_area.includes("Public Engagement")}
+                      />
+                      <label className="form-check-label " for="inlineRadio1">
+                      Public Engagement
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name="imp_area"
+                        value="Air and Climate"
+                        onChange={handleImpactAreaChange}
+                        checked={stateImp_area.includes("Air and Climate")}
+                      />
+                      <label className="form-check-label " for="inlineRadio1">
+                      Air and Climate
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name="imp_area"
+                        value="Buildings"
+                        onChange={handleImpactAreaChange}
+                        checked={stateImp_area.includes("Buildings")}
+                      />
+                      <label className="form-check-label " for="inlineRadio1">
+                      Buildings
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name="imp_area"
+                        value="Energy"
+                        onChange={handleImpactAreaChange}
+                        checked={stateImp_area.includes("Energy")}
+                      />
+                      <label className="form-check-label " for="inlineRadio1">
+                      Energy
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name="imp_area"
+                        value="Food and Dining"
+                        onChange={handleImpactAreaChange}
+                        checked={stateImp_area.includes("Food and Dining")}
+                      />
+                      <label className="form-check-label " for="inlineRadio1">
+                      Food and Dining
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name="imp_area"
+                        value="Grounds"
+                        onChange={handleImpactAreaChange}
+                        checked={stateImp_area.includes("Grounds")}
+                      />
+                      <label className="form-check-label " for="inlineRadio1">
+                      Grounds
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name="imp_area"
+                        value="Purchasing"
+                        onChange={handleImpactAreaChange}
+                        checked={stateImp_area.includes("Purchasing")}
+                      />
+                      <label className="form-check-label " for="inlineRadio1">
+                      Purchasing
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name="imp_area"
+                        value="Transportation"
+                        onChange={handleImpactAreaChange}
+                        checked={stateImp_area.includes("Transportation")}
+                      />
+                      <label className="form-check-label " for="inlineRadio1">
+                      Transportation
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name="imp_area"
+                        value="Waste"
+                        onChange={handleImpactAreaChange}
+                        checked={stateImp_area.includes("Waste")}
+                      />
+                      <label className="form-check-label " for="inlineRadio1">
+                      Waste
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name="imp_area"
+                        value="Water"
+                        onChange={handleImpactAreaChange}
+                        checked={stateImp_area.includes("Water")}
+                      />
+                      <label className="form-check-label " for="inlineRadio1">
+                      Water
+                      </label>
+                    </div>                    
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name="imp_area"
+                        value="Coordination and Planning"
+                        onChange={handleImpactAreaChange}
+                        checked={stateImp_area.includes("Coordination and Planning")}
+                      />
+                      <label className="form-check-label " for="inlineRadio1">
+                      Coordination and Planning
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name="imp_area"
+                        value="Diversity and Affordability"
+                        onChange={handleImpactAreaChange}
+                        checked={stateImp_area.includes("Diversity and Affordability")}
+                      />
+                      <label className="form-check-label " for="inlineRadio1">
+                      Diversity and Affordability
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name="imp_area"
+                        value="Investment and Finance"
+                        onChange={handleImpactAreaChange}
+                        checked={stateImp_area.includes("Investment and Finance")}
+                      />
+                      <label className="form-check-label " for="inlineRadio1">
+                      Investment and Finance
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name="imp_area"
+                        value="Wellbeing and Work"
+                        onChange={handleImpactAreaChange}
+                        // checked={check_impact_area_vals("Wellbeing and Work")}
+                        checked={stateImp_area.includes("Wellbeing and Work")}
+                      />
+                      <label className="form-check-label " for="inlineRadio1">
+                      Wellbeing and Work
+                      </label>
+                    </div>
                   </div>
 
-                  <div className="col-md-6">
+                  {/*  */}
+
+
+                  <div className="col-md-12">
                     <label className="form-label fw-bold">Project Date</label>
                     
                     <input
@@ -513,7 +763,7 @@ const Curriculum = () => {
                       value={stateCLL.project_date}
                     />
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label className="form-label fw-bold">Academic Year</label>
                     <input
                       type="text"
@@ -525,7 +775,7 @@ const Curriculum = () => {
                     />
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label className="form-label fw-bold">
                       Upload Relevant Documents
                     </label>
@@ -538,7 +788,7 @@ const Curriculum = () => {
                     />
                   </div>
 
-                  <div className="col-6">
+                  <div className="col-md-12">
                     <label for="inputAddress" className="form-label fw-bold">
                       Url (If Available)
                     </label>
@@ -553,7 +803,7 @@ const Curriculum = () => {
                     ></textarea>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Provide a brief description of the projects and how they
                       contribute to understanding or advancing sustainability in
@@ -569,7 +819,7 @@ const Curriculum = () => {
                     ></textarea>
                   </div>
 
-                  <div className="col-12">
+                  <div className="col-md-12">
                     <button type="submit" className="btn btn-primary w-100" onClick={handleSubmitCLL}>
                       Submit
                     </button>
@@ -581,7 +831,7 @@ const Curriculum = () => {
               <div className="tab-pane fade" id="messages">
                 <h4 className="mt-2 head-academic">Sustainability Programs</h4>
                 <form className="row g-3">
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Sustainability-Focused Academic Program Name
                     </label>
@@ -594,7 +844,7 @@ const Curriculum = () => {
                       onChange={handleInputChangeAP}
                     />
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       College/Unit
                     </label>
@@ -612,7 +862,7 @@ const Curriculum = () => {
                       }
                     </select>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       Department
                     </label>
@@ -622,10 +872,6 @@ const Curriculum = () => {
                       value={stateAP.department}
                     >
                       <option selected>Choose...</option>
-                      {/* <option value="College of Science and Engeneering">College of Science and Engeneering</option>
-                      <option value="College of Education">College of Education</option>
-                      <option value="College of Business">College of Business</option>
-                      <option value="College of Humanity Sciences">College of Humanity Sciences</option> */}
                       {
                         getDepartments(stateAP.college_or_unit)?.map((d, i) =>(
                           <option key={i} value={d}>{d}</option>
@@ -633,7 +879,7 @@ const Curriculum = () => {
                       }
                     </select>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputPassword4" className="form-label fw-bold">
                       Level of Program
                     </label>
@@ -666,7 +912,7 @@ const Curriculum = () => {
                       </label>
                     </div>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       Program Type
                     </label>
@@ -684,7 +930,7 @@ const Curriculum = () => {
                     </select>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputPassword4" className="form-label fw-bold">
                       Adopted one or more sustainability-focused learning
                       outcome(s)
@@ -718,7 +964,7 @@ const Curriculum = () => {
                       </label>
                     </div>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputPassword4" className="form-label fw-bold">
                       Requires the successful completion of a
                       sustainability-focused course
@@ -753,7 +999,7 @@ const Curriculum = () => {
                     </div>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       Semester Offered
                     </label>
@@ -769,7 +1015,7 @@ const Curriculum = () => {
                     </select>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
                       Program Active or Inactive
                     </label>
@@ -803,7 +1049,7 @@ const Curriculum = () => {
                     </div>
                   </div>
 
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Year Program Started
                     </label>
@@ -816,7 +1062,7 @@ const Curriculum = () => {
                       value={stateAP.year_program_started}
                     />
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Reporting Date Academic Year
                     </label>
@@ -829,23 +1075,52 @@ const Curriculum = () => {
                       value={stateAP.reporting_date}
                     />
                   </div>
-                  <div className="col-md-6">
+
+                  {/* POC UPDATE */}
+                  
+                  <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
-                      Project POC
+                      POC Name
                     </label>
-                    <select id="" className="form-select"
-                      name="poc"
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="inputEmail4"
+                      name="poc_name"
+                      value={stateAP.poc_name}
                       onChange={handleInputChangeAP}
-                      value={stateAP.poc}
-                    >
-                      <option selected>Choose...</option>
-                      {POC ? POC.map(p => (
-                        <option key={p.id} value={p.id}>{p.name}</option>
-                      )): null}
-                    </select>
+                    ></input>
+                  </div>
+                  <div className="col-md-12">
+                    <label for="inputEmail4" className="form-label fw-bold">
+                      POC Email
+                    </label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="inputEmail4"
+                      name="poc_email"
+                      value={stateAP.poc_email}
+                      onChange={handleInputChangeAP}
+                    ></input>
+                  </div>
+                  <div className="col-md-12">
+                    <label for="inputEmail4" className="form-label fw-bold">
+                      POC Phone
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="inputEmail4"
+                      name="poc_phone"
+                      value={stateAP.poc_phone}
+                      onChange={handleInputChangeAP}
+                    ></input>
                   </div>
 
-                  <div className="col-6">
+                  {/* POC UPDATE */}
+
+                  <div className="col-md-12">
                     <label for="inputAddress" className="form-label fw-bold">
                       Website Url for Program
                     </label>
@@ -860,7 +1135,7 @@ const Curriculum = () => {
                     ></textarea>
                   </div>
 
-                  <div className="col-6">
+                  <div className="col-md-12">
                     <label for="inputAddress" className="form-label fw-bold">
                       Brief Course Description
                     </label>
@@ -875,7 +1150,7 @@ const Curriculum = () => {
                     ></textarea>
                   </div>
 
-                  <div className="col-12">
+                  <div className="col-md-12">
                     <button type="submit" className="btn btn-primary w-100" onClick={handleSubmitAP}>
                       Submit
                     </button>
