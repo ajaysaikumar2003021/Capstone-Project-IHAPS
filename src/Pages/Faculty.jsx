@@ -403,7 +403,7 @@ const Faculty = () => {
                     />
                   </div>
                   <div className="col-md-12">
-                    <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
+                    <button type="submit" className="btn btn-primary w-100" onClick={handleSubmit}>
                       Submit
                     </button>
                   </div>

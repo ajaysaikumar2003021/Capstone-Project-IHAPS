@@ -99,18 +99,6 @@ const CommunityEngagement = () => {
 // CEP
 // CP
 
-
-  const [POC, setPOC] = useState();
-  
-  useEffect(() => {
-    fetch(URL_SERVER + '/curriculum/poc')
-    .then(res => res.json())
-    .then(data => {
-      setPOC(data);
-      console.log(POC);
-    })
-  }, [])
-
   const [PTPO, setPTPO] = useState(initial_statePTPO);
   const [SSGPI, setSSGPI] = useState(initial_stateSSGPI);
   const [CEC, setCEC] = useState(initial_stateCEC);
