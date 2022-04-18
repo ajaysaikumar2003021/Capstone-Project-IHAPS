@@ -40,15 +40,14 @@ const Transportation = () => {
         headers: {  'Content-Type': 'application/json' },
         body: JSON.stringify(state)
     })
-    .then(data => {
-      if(data.ok){
+    .then(res => {
+      if(res.ok){
         alert('Form Submitted Successfully!!')
-        return data.json()
+        return res.json()
       }
       else{
-        // console.log(data)
-        throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
-        // throw new Error("")
+        return res.text().then(text => { throw new Error(text) })
+        // throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
       }
     })
     .then(data => {

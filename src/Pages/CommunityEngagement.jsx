@@ -2,6 +2,53 @@ import React, {useState, useEffect} from "react";
 
 import {URL_SERVER} from '../serverurl';
 
+
+let departments= {
+  "College of Science and Engineering": [
+    "Biology and Biotechnology",
+    "Computing Sciences",
+    "Engineering",
+    "Environmental Science",
+    "Mathematics and Statistics",
+    "Physical and Applied Sciences"
+
+  ],
+  "College of Business": [
+    "Accounting",
+    "Decision Sciences, Economics, Finance and Marketing",
+    "Healthcare Administration",
+    "Management",
+    "Management Information Systems"
+  ],
+  "College of Education": [
+    "Counseling, Special Education and Diversity",
+    "Curriculum and Instruction",
+    "Educational Leadership and Policy Analysis",
+    "Literacy, Library and Learning Technologies"
+
+  ],
+  "College of Human Sciences and Humanities": [
+    "Clinical, Health, and Applied Sciences",
+    "Communication and Studio Arts",
+    "Liberal Arts",
+    "Psychology",
+    "Social and Cultural Sciences"
+
+  ]
+}
+
+function getColleges(){
+  const colleges = [];
+  for(const c in departments){
+    colleges.push(c)
+  }
+  return colleges;
+}
+
+function getDepartments(college){
+  return departments[college];
+}
+
 const initial_statePTPO = {
   'reporting_date': '',
   'peer_to_peer_outreach_type': '',
@@ -41,6 +88,7 @@ const initial_stateSSGPI = {
 const initial_stateCEC = {
   'reporting_date': '',
   'continuing_education_course_title' : '',
+  'college_or_unit' : '',
   'department' : '',
   'course_description' : '',
   'course_type' : '',
@@ -173,13 +221,14 @@ const CommunityEngagement = () => {
         // body: JSON.stringify(PTPO)
         body: uploadData
     })
-    .then(data => {
-      if(data.ok){
+    .then(res => {
+      if(res.ok){
         alert('Form Submitted Successfully!!')
-        return data.json()
+        return res.json()
       }
       else{
-        throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
+        return res.text().then(text => { throw new Error(text) })
+        // throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
       }
     })
     .then(data => {
@@ -211,13 +260,14 @@ const CommunityEngagement = () => {
         // body: JSON.stringify(SSGPI)
         body: uploadData
     })
-    .then(data => {
-      if(data.ok){
+    .then(res => {
+      if(res.ok){
         alert('Form Submitted Successfully!!')
-        return data.json()
+        return res.json()
       }
       else{
-        throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
+        return res.text().then(text => { throw new Error(text) })
+        // throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
       }
     })
     .then(data => {
@@ -240,13 +290,14 @@ const CommunityEngagement = () => {
         headers: {  'Content-Type': 'application/json' },
         body: JSON.stringify(CEC)
     })
-    .then(data => {
-      if(data.ok){
+    .then(res => {
+      if(res.ok){
         alert('Form Submitted Successfully!!')
-        return data.json()
+        return res.json()
       }
       else{
-        throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
+        return res.text().then(text => { throw new Error(text) })
+        // throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
       }
     })
     .then(data => {
@@ -278,13 +329,14 @@ const CommunityEngagement = () => {
         // body: JSON.stringify(SPD)
         body: uploadData
     })
-    .then(data => {
-      if(data.ok){
+    .then(res => {
+      if(res.ok){
         alert('Form Submitted Successfully!!')
-        return data.json()
+        return res.json()
       }
       else{
-        throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
+        return res.text().then(text => { throw new Error(text) })
+        // throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
       }
     })
     .then(data => {
@@ -307,13 +359,14 @@ const CommunityEngagement = () => {
         headers: {  'Content-Type': 'application/json' },
         body: JSON.stringify(CEP)
     })
-    .then(data => {
-      if(data.ok){
+    .then(res => {
+      if(res.ok){
         alert('Form Submitted Successfully!!')
-        return data.json()
+        return res.json()
       }
       else{
-        throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
+        return res.text().then(text => { throw new Error(text) })
+        // throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
       }
     })
     .then(data => {
@@ -336,13 +389,14 @@ const CommunityEngagement = () => {
         headers: {  'Content-Type': 'application/json' },
         body: JSON.stringify(CP)
     })
-    .then(data => {
-      if(data.ok){
+    .then(res => {
+      if(res.ok){
         alert('Form Submitted Successfully!!')
-        return data.json()
+        return res.json()
       }
       else{
-        throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
+        return res.text().then(text => { throw new Error(text) })
+        // throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
       }
     })
     .then(data => {
@@ -899,18 +953,38 @@ const CommunityEngagement = () => {
                   </div>
                   <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
+                      College/Unit
+                    </label>
+                    <select id="inputState" className="form-select"
+                      name="college_or_unit"
+                      onChange={handleInputChangeCEC}
+                      value={CEC.college_or_unit}
+                    >
+                      <option selected>Choose...</option>
+                      
+                      {
+                        getColleges().map((c, i) =>(
+                          <option key={i} value={c}>{c}</option>
+                        ))
+                      }
+                    </select>
+                  </div>
+                  <div className="col-md-12">
+                    <label for="inputState" className="form-label fw-bold">
                       Department
                     </label>
                     <select id="inputState" className="form-select"
                       name="department"
-                      value={CEC.department}
                       onChange={handleInputChangeCEC}
+                      value={CEC.department}
                     >
                       <option selected>Choose...</option>
-                      <option value="College of Science">College of Science</option>
-                      <option value="College of Education">College of Education</option>
-                      <option value="College of Business">College of Business</option>
-                      <option value="College of Humanity Sciences">College of Humanity Sciences</option>
+                    
+                      {
+                        getDepartments(CEC.college_or_unit)?.map((d, i) =>(
+                          <option key={i} value={d}>{d}</option>
+                        ))
+                      }
                     </select>
                   </div>
 
