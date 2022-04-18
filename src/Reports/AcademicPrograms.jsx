@@ -2,14 +2,22 @@ import React, { useState, useEffect } from "react";
 import { URL_SERVER } from "../serverurl";
 
 const AcademicCourses = () => {
-    const [state, setState] = useState([]);
+    const [state, setState] = useState({});
     useEffect(() => {
 
       fetch(`${URL_SERVER}/curriculum/apreport/`, {
           method: 'GET',
           headers: {  'Content-Type': 'application/json' }
       })
-      .then(res => res.json())
+      .then(res => {
+        if(res.ok){
+          return res.json()
+        }
+        else{
+          return res.text().then(text => { throw new Error(text) })
+          // throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
+        }
+      })
       .then(data => {
           setState(data);
           console.log(state)

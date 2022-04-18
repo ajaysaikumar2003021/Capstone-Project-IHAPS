@@ -3,7 +3,7 @@ import { URL_SERVER } from "../serverurl";
 import GetData from './TimeRange'
 
 const CampusAsLL = () => {
-    const [state, setState] = useState([]);
+    const [state, setState] = useState({});
     const [startdate, setStartdate] = useState()
     const [enddate, setEnddate] = useState()
 

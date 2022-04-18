@@ -3,7 +3,7 @@ import { URL_SERVER } from "../serverurl";
 // import GetData from './TimeRange'
 
 const AcademicCourses = () => {
-    const [state, setState] = useState([]);
+    const [state, setState] = useState({});
    
     useEffect(() => {
       // e.preventDefault();

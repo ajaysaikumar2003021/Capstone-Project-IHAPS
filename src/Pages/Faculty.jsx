@@ -16,7 +16,7 @@ const initial_state = {
   "served_higher_edu": "",
   "sust_research_service_dates" : "",
   "support_url" : "",
-  "supporting_document" : null
+  "supporting_document" : ''
 }
 
 const reader = new FileReader();
