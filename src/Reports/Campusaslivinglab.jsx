@@ -1,18 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from  "react";
+import { Navigate } from "react-router-dom";
 import { URL_SERVER } from "../serverurl";
 import GetData from './TimeRange'
 
-const CampusAsLL = () => {
+const CampusAsLL = (props) => {
+
+
     const [state, setState] = useState({});
     const [startdate, setStartdate] = useState()
     const [enddate, setEnddate] = useState()
-
+    
+    console.log(props);
+    
     const getData = (e) => {
         e.preventDefault();
 
         fetch(`${URL_SERVER}/curriculum/cllreport?enddate=${enddate}&startdate=${startdate}`, {
             method: 'GET',
-            headers: {  'Content-Type': 'application/json' }
+            headers: {  
+              'Content-Type': 'application/json', 
+              'Authorization': 'Token ' + props.token
+            }
         })
         .then(res => res.json())
         .then(data => {

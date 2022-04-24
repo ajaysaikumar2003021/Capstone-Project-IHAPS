@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { URL_SERVER } from "../serverurl";
 import GetData from './TimeRange'
 
-const PeertoPeer = () => {
+const PeertoPeer = (props) => {
     const [state, setState] = useState({});
     const [startdate, setStartdate] = useState()
     const [enddate, setEnddate] = useState()
@@ -12,7 +12,10 @@ const PeertoPeer = () => {
 
         fetch(`${URL_SERVER}/campus-and-community/p2preport?startdate=${startdate}&enddate=${enddate}`, {
             method: 'GET',
-            headers: {  'Content-Type': 'application/json' }
+            headers: {  
+              'Content-Type': 'application/json', 
+              'Authorization': 'Token ' + props.token
+            }
         })
         .then(res => res.json())
         .then(data => {

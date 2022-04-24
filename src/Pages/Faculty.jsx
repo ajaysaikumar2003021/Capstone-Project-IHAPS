@@ -20,7 +20,7 @@ const initial_state = {
 }
 
 const reader = new FileReader();
-const Faculty = () => {
+const Faculty = (props) => {
 
   const [state, setState] = useState(initial_state);
 
@@ -47,6 +47,9 @@ const Faculty = () => {
     
     fetch(`${URL_SERVER}/research-and-scholarship/facultysustresearchandservice/`, {
         method: 'POST',
+        headers: {  
+          'Authorization': 'Token ' + props.token
+        },
         body: uploadData
     })
     .then(res => {

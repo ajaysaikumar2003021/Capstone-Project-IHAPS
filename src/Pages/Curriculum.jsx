@@ -115,7 +115,7 @@ const initial_stateCLL = {
 
 const impact_area_vals = []
 
-const Curriculum = () => {
+const Curriculum = (props) => {
   const [stateAC, setStateAC] = useState(initial_stateAC);
   const [stateAP, setStateAP] = useState(initial_stateAP);
   const [stateCLL, setStateCLL] = useState(initial_stateCLL);
@@ -187,7 +187,10 @@ const Curriculum = () => {
     
     fetch(`${URL_SERVER}/curriculum/academiccourse/`, {
         method: 'POST',
-        headers: {  'Content-Type': 'application/json' },
+        headers: {  
+          'Content-Type': 'application/json', 
+          'Authorization': 'Token ' + props.token
+        },
         body: JSON.stringify(stateAC)
         // body: state
     })
@@ -219,7 +222,10 @@ const Curriculum = () => {
     
     fetch(`${URL_SERVER}/curriculum/academicprogram/`, {
         method: 'POST',
-        headers: {  'Content-Type': 'application/json' },
+        headers: {  
+          'Content-Type': 'application/json', 
+          'Authorization': 'Token ' + props.token
+        },
         body: JSON.stringify(stateAP)
         // body: state
     })
@@ -259,6 +265,9 @@ const Curriculum = () => {
 
     fetch(`${URL_SERVER}/curriculum/campusaslivinglab/`, {
         method: 'POST',
+        headers: { 
+          'Authorization': 'Token ' + props.token
+        },
         body: uploadData
     })
     .then(res => {

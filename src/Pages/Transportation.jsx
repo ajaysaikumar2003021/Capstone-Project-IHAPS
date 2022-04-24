@@ -18,7 +18,7 @@ const initial_state = {
   "num_b5_vehicles" : ""
 
 }
-const Transportation = () => {
+const Transportation = (props) => {
   const [state, setState] = useState(initial_state);
 
   
@@ -37,7 +37,10 @@ const Transportation = () => {
     
     fetch(`${URL_SERVER}/air-and-transportation/campusfleet/`, {
         method: 'POST',
-        headers: {  'Content-Type': 'application/json' },
+        headers: {  
+          'Content-Type': 'application/json', 
+          'Authorization': 'Token ' + props.token
+        },
         body: JSON.stringify(state)
     })
     .then(res => {

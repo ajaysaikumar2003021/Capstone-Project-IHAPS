@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { URL_SERVER } from "../serverurl";
 // import GetData from './TimeRange'
 
-const AcademicCourses = () => {
+const AcademicCourses = (props) => {
     const [state, setState] = useState({});
    
     useEffect(() => {
@@ -10,7 +10,10 @@ const AcademicCourses = () => {
 
       fetch(`${URL_SERVER}/curriculum/acreport/`, {
           method: 'GET',
-          headers: {  'Content-Type': 'application/json' }
+          headers: {  
+            'Content-Type': 'application/json', 
+            'Authorization': 'Token ' + props.token
+          }
       })
       .then(res => res.json())
       .then(data => {

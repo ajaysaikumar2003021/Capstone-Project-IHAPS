@@ -14,7 +14,7 @@ const initial_state = {
   "food_service_provider" : ""
 }
 
-const Food = () => {
+const Food = (props) => {
 
   const [state, setState] = useState(initial_state);
 
@@ -33,7 +33,10 @@ const Food = () => {
     
     fetch(`${URL_SERVER}/food-and-waste/foodbeveragepurchasing/`, {
         method: 'POST',
-        headers: {  'Content-Type': 'application/json' },
+        headers: {  
+          'Content-Type': 'application/json', 
+          'Authorization': 'Token ' + props.token
+        },
         body: JSON.stringify(state)
     })
     .then(res => {

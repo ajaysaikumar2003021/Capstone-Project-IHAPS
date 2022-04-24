@@ -138,7 +138,7 @@ const initial_stateCP = {
 
 
 
-const CommunityEngagement = () => {
+const CommunityEngagement = (props) => {
 
 // PTPO
 // SSGPI
@@ -217,6 +217,9 @@ const CommunityEngagement = () => {
     
     fetch(`${URL_SERVER}/campus-and-community/peertopeeroutreach/`, {
         method: 'POST',
+        headers: {   
+          'Authorization': 'Token ' + props.token
+        },
         // headers: {  'Content-Type': 'application/json' },
         // body: JSON.stringify(PTPO)
         body: uploadData
@@ -256,8 +259,9 @@ const CommunityEngagement = () => {
 
     fetch(`${URL_SERVER}/campus-and-community/studentsustgrpproginitiative/`, {
         method: 'POST',
-        // headers: {  'Content-Type': 'application/json' },
-        // body: JSON.stringify(SSGPI)
+        headers: {   
+          'Authorization': 'Token ' + props.token
+        },
         body: uploadData
     })
     .then(res => {
@@ -287,7 +291,10 @@ const CommunityEngagement = () => {
     
     fetch(`${URL_SERVER}/campus-and-community/continuingeducationcourse/`, {
         method: 'POST',
-        headers: {  'Content-Type': 'application/json' },
+        headers: {  
+          'Content-Type': 'application/json', 
+          'Authorization': 'Token ' + props.token
+        },
         body: JSON.stringify(CEC)
     })
     .then(res => {
@@ -325,8 +332,9 @@ const CommunityEngagement = () => {
 
     fetch(`${URL_SERVER}/campus-and-community/staffprofessionaldevelopment/`, {
         method: 'POST',
-        // headers: {  'Content-Type': 'application/json' },
-        // body: JSON.stringify(SPD)
+        headers: {   
+          'Authorization': 'Token ' + props.token
+        },
         body: uploadData
     })
     .then(res => {
@@ -356,7 +364,10 @@ const CommunityEngagement = () => {
     
     fetch(`${URL_SERVER}/campus-and-community/communityeducationprogram/`, {
         method: 'POST',
-        headers: {  'Content-Type': 'application/json' },
+        headers: {  
+          'Content-Type': 'application/json', 
+          'Authorization': 'Token ' + props.token
+        },
         body: JSON.stringify(CEP)
     })
     .then(res => {
@@ -386,7 +397,10 @@ const CommunityEngagement = () => {
     
     fetch(`${URL_SERVER}/campus-and-community/communitypartnership/`, {
         method: 'POST',
-        headers: {  'Content-Type': 'application/json' },
+        headers: {  
+          'Content-Type': 'application/json', 
+          'Authorization': 'Token ' + props.token
+        },
         body: JSON.stringify(CP)
     })
     .then(res => {

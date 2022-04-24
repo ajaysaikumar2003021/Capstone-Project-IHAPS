@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { URL_SERVER } from "../serverurl";
 
-const AcademicCourses = () => {
+const AcademicPrograms = (props) => {
     const [state, setState] = useState({});
     useEffect(() => {
 
       fetch(`${URL_SERVER}/curriculum/apreport/`, {
           method: 'GET',
-          headers: {  'Content-Type': 'application/json' }
+          headers: {  
+            'Content-Type': 'application/json', 
+            'Authorization': 'Token ' + props.token
+          }
       })
       .then(res => {
         if(res.ok){
@@ -113,4 +116,4 @@ const AcademicCourses = () => {
   );
 };
 
-export default AcademicCourses;
+export default AcademicPrograms;

@@ -1,7 +1,59 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Navigate } from "react-router-dom";
+import {URL_SERVER} from "../serverurl";
 
-const Login = () => {
+
+
+const Login = (props) => {
+  const [state, setState] = useState(null);
+  const [location, setLocation] = useState("/temp");
+  // let history = useHistory()
+  const handleInputChange = (e) => {
+    console.log(e.target.value);
+    console.log("State", state);
+    
+    setState({
+      ...state,
+      [e.target.name]: e.target.value
+    });
+  }
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(state);
+    
+    fetch(`${URL_SERVER}/auth/`, {
+        method: 'POST',
+        headers: {  'Content-Type': 'application/json' },
+        body: JSON.stringify(state)
+    })
+    .then(res => {
+      if(res.ok){
+        // alert('Form Submitted Successfully!!')
+        return res.json()
+      }
+      else{
+        return res.text().then(text => { throw new Error(text) })
+        // throw new Error(`Form Not Sumitted with Status Code: ${data.status}`)
+      }
+    })
+    .then(data => {
+      
+      props.authentication(data.token)
+      if (props.loc === undefined || props.loc === null)
+        setLocation("/")
+      // else
+      //   setLocation(props.loc)
+
+    })
+    .catch(err => {
+        alert(err)
+        console.log(err)
+    })
+    
+  }
+
+
   return (
     <>
       <div className="container-fluid">
@@ -17,6 +69,8 @@ const Login = () => {
                 className="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
+                name="username"
+                onChange={handleInputChange}
               />
             </div>
             <div className="mb-3">
@@ -27,9 +81,11 @@ const Login = () => {
                 type="password"
                 className="form-control"
                 id="exampleInputPassword1"
+                name="password"
+                onChange={handleInputChange}
               />
             </div>
-            <button type="submit" className="btn btn-primary w-100">
+            <button type="submit" className="btn btn-primary w-100" onClick={handleSubmit}>
               Login
             </button>
           </form>
@@ -39,6 +95,9 @@ const Login = () => {
           </Link> */}
         </div>
       </div>
+      {(location !== "/temp" && location !== null) ? (
+      <Navigate replace to={location}/>
+      ) : null }
     </>
   );
 };

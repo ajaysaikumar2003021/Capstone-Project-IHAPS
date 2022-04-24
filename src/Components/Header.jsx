@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
-const Header = () => {
+const Header = (props) => {
+  
   return (
     <div>
       <nav className="navbar navbar-expand-lg header">
@@ -33,17 +34,7 @@ const Header = () => {
                     Home
                   </Link>
                 </li>
-                <li className="nav-item head-item">
-                  <Link to="/about-ihaps" className="nav-link">
-                    About us
-                  </Link>
-                </li>
-                <li className="nav-item head-item">
-                  {/* <Link className="nav-link" to="/executive-director"> */}
-                  <Link className="nav-link" to="#">
-                  About SAC
-                  </Link>
-                </li>
+                
 
                 <li className="nav-item head-item dropdown">
                   <a
@@ -138,8 +129,29 @@ const Header = () => {
                   </ul>
                 </li>
                 <li className="nav-item head-item">
-                  <Link className="nav-link" to="/login">
-                    Login
+                  <Link to="/about-ihaps" className="nav-link">
+                    About us
+                  </Link>
+                </li>
+                {/* <li className="nav-item head-item">
+                  /* <Link className="nav-link" to="/executive-director"> 
+                  <Link className="nav-link" to="#">
+                  About SAC
+                  </Link>
+                </li> 
+                */}
+                
+                {(props.token === null) ? null : (
+                  <li className="nav-item head-item">
+                  <Link className="nav-link" to= "/change-password">
+                    Change Password
+                  </Link>
+                </li>
+                )}
+                
+                <li className="nav-item head-item">
+                  <Link className="nav-link" to={(props.token===null) ? "/login" : "/logout"}>
+                    {(props.token===null) ? "Login" : "Logout"}
                   </Link>
                 </li>
               </ul>

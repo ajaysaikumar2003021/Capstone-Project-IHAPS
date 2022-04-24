@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { URL_SERVER } from "../serverurl";
 import GetData from './TimeRange'
 
-const FacultyResearchService = () => {
+const FacultyResearchService = (props) => {
     const [state, setState] = useState({});
     const [startdate, setStartdate] = useState()
     const [enddate, setEnddate] = useState()
@@ -12,7 +12,10 @@ const FacultyResearchService = () => {
 
         fetch(`${URL_SERVER}/research-and-scholarship/fsrsreport?startdate=${startdate}&enddate=${enddate}`, {
             method: 'GET',
-            headers: {  'Content-Type': 'application/json' }
+            headers: {  
+              'Content-Type': 'application/json', 
+              'Authorization': 'Token ' + props.token
+            }
         })
         .then(res => res.json())
         .then(data => {
@@ -73,7 +76,7 @@ const FacultyResearchService = () => {
           <tfoot>
             <tr>
               <td>Last Updated AT</td>
-              <td>{state.data? state.data['4']: "No Time Stamp Found"}</td>
+              <td>{state.data? Date(state.data['4']): "No Time Stamp Found"}</td>
             </tr>
           </tfoot>
         </table>

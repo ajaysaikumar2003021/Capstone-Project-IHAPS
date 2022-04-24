@@ -1,12 +1,20 @@
-import React from "react";
+import React, {useEffect} from "react";
+import {useNavigate, Navigate} from "react-router-dom";
 
 const AboutUs = () => {
-  // window.location.href = "https://www.uhcl.edu/sustainability/";
+  const navigate = useNavigate()
   window.open(
     'https://www.uhcl.edu/sustainability/',
-    '_blank' // <- This is what makes it open in a new window.
+    // '_blank',
+    // 'PopUp',
   );
-  window.location.replace("/");
+  // window.location.assign('https://www.uhcl.edu/sustainability/');
+  // navigate('/')
+  // window.location.assign('/');
+  return (
+    <Navigate replace to="/" />
+  )
+  // return null;
   // return (
   //   <>
   //     <div className="container-fluid about-main">
