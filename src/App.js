@@ -19,6 +19,7 @@ import AcademicCourses from "./Reports/AcademicCourses";
 import AcademicPrograms from "./Reports/AcademicPrograms";
 import FacultyResearchService from "./Reports/FacultyResearchService";
 import PeertoPeer from "./Reports/PeertoPeer";
+import ChangePassword from "./Pages/ChangePassword";
 import BasicDocument  from "./Pdfs/AcademicCourses";
 import {URL_SERVER} from "./serverurl.js";
 
@@ -170,6 +171,15 @@ function App() {
                       />
                       : <Login authentication={authentication} token={token}/>
                     }
+          />
+          <Route 
+            path="/change-password" 
+            element={(token!==null && user!==null ) 
+                      ? <ChangePassword token={token} user={user}/> 
+                      : <Navigate replace to="/login" 
+                      />
+                    }
+            // element={<PeertoPeer />}
           /> 
           <Route path="/logout"
             element={(token!==null && user!==null ) 
