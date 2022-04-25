@@ -103,7 +103,7 @@ const CampusAsLL = (props) => {
           <tfoot>
             <tr>
               <td>Last Updated AT</td>
-              <td>{state.data? state.data['4']: "No Time Stamp Found"}</td>
+              <td>{state.data? Date(state.data['4']): "No Time Stamp Found"}</td>
             </tr>
           </tfoot>
         </table>

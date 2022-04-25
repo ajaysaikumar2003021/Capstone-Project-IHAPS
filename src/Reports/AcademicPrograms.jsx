@@ -107,7 +107,7 @@ const AcademicPrograms = (props) => {
           <tfoot>
             <tr>
               <td>Last Updated AT</td>
-              <td>{state.data? state.data['6']: "No Time Stamp Found"}</td>
+              <td>{state.data? Date(state.data['6']): "No Time Stamp Found"}</td>
             </tr>
           </tfoot>
         </table>
