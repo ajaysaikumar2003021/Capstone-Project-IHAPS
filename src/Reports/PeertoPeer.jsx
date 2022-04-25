@@ -76,7 +76,7 @@ const PeertoPeer = (props) => {
           <tfoot>
             <tr>
               <td>Last Updated AT</td>
-              <td>{state.data? Date(state.data['5']): "No Time Stamp Found"}</td>
+              <td>{state.data? Date(state.data['5']).toString(): "No Time Stamp Found"}</td>
             </tr>
           </tfoot>
         </table>
