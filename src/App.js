@@ -20,7 +20,6 @@ import AcademicPrograms from "./Reports/AcademicPrograms";
 import FacultyResearchService from "./Reports/FacultyResearchService";
 import PeertoPeer from "./Reports/PeertoPeer";
 import ChangePassword from "./Pages/ChangePassword";
-import BasicDocument  from "./Pdfs/AcademicCourses";
 import {URL_SERVER} from "./serverurl.js";
 
 
@@ -126,7 +125,7 @@ function App() {
           <Route 
             path="/report-academic-courses" 
             element={(token!==null && user!==null )
-                      ? <AcademicCourses token={token} user={user} /> 
+                      ? <AcademicCourses token={token} user={user} />
                       : <Navigate replace to="/login" />
                     }
           />
@@ -153,7 +152,6 @@ function App() {
                       : <Navigate replace to="/login" 
                       />
                     }
-            // element={<FacultyResearchService />}
           />
           <Route 
             path="/report-peer-to-peer" 
@@ -162,7 +160,6 @@ function App() {
                       : <Navigate replace to="/login" 
                       />
                     }
-            // element={<PeertoPeer />}
           />
 
           <Route path="/login"
@@ -179,7 +176,6 @@ function App() {
                       : <Navigate replace to="/login" 
                       />
                     }
-            // element={<PeertoPeer />}
           /> 
           <Route path="/logout"
             element={(token!==null && user!==null ) 
@@ -187,7 +183,7 @@ function App() {
                       : <Navigate replace to="/" />
                     }
           /> 
-          {/* <Route path="/basic-document" element={<BasicDocument />} /> */}
+
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -1,5 +1,7 @@
 import React from "react";
 import TimeRange from './TimeRange'
+import { useReactToPrint } from "react-to-print";
+
 const ReportCurriculum = () => {
   return (
     <div className="container-fluid">

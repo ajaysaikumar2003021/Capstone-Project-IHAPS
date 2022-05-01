@@ -501,11 +501,11 @@ const Curriculum = (props) => {
                     />
                   </div>
                   
-                  {/* POC UPDATE */}
+                  {/* Point of Contact (POC)  UPDATE */}
                   
                   <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
-                      POC Name
+                      Point of Contact (POC)  Name
                     </label>
                     <input
                       type="text"
@@ -518,7 +518,7 @@ const Curriculum = (props) => {
                   </div>
                   <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
-                      POC Email
+                      Point of Contact (POC)  Email
                     </label>
                     <input
                       type="email"
@@ -531,7 +531,7 @@ const Curriculum = (props) => {
                   </div>
                   <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
-                      POC Phone
+                      Point of Contact (POC)  Phone
                     </label>
                     <input
                       type="text"
@@ -542,7 +542,7 @@ const Curriculum = (props) => {
                       onChange={handleInputChangeCLL}
                     ></input>
                   </div>
-                  {/* POC UPDATE */}
+                  {/* Point of Contact (POC)  UPDATE */}
 
 
                   <div className="col-md-12">
@@ -926,7 +926,7 @@ const Curriculum = (props) => {
                   </div>
                   <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold">
-                      Program Type
+                      Sustainability Program Type
                     </label>
                     <select id="inputState" className="form-select"
                       name="program_type"
@@ -938,7 +938,7 @@ const Curriculum = (props) => {
                       <option value="Minor">Minor</option>
                       <option value="Degree">Degree</option>
                       <option value="Concentration">Concentration</option>
-                      <option value="An Immersive Experience">An Immersive Experience</option>
+                      <option value="An Immersive Experience">An Immersive Experience - Immersive Experience is defined as a sustainability-focused educational study program that is one week or more in length</option>
                     </select>
                   </div>
 
@@ -1088,11 +1088,11 @@ const Curriculum = (props) => {
                     />
                   </div>
 
-                  {/* POC UPDATE */}
+                  {/* Point of Contact (POC)  UPDATE */}
                   
                   <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
-                      POC Name
+                      Point of Contact (POC)  Name
                     </label>
                     <input
                       type="text"
@@ -1105,7 +1105,7 @@ const Curriculum = (props) => {
                   </div>
                   <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
-                      POC Email
+                      Point of Contact (POC)  Email
                     </label>
                     <input
                       type="email"
@@ -1118,7 +1118,7 @@ const Curriculum = (props) => {
                   </div>
                   <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
-                      POC Phone
+                      Point of Contact (POC)  Phone
                     </label>
                     <input
                       type="text"
@@ -1130,7 +1130,7 @@ const Curriculum = (props) => {
                     ></input>
                   </div>
 
-                  {/* POC UPDATE */}
+                  {/* Point of Contact (POC)  UPDATE */}
 
                   <div className="col-md-12">
                     <label for="inputAddress" className="form-label fw-bold">

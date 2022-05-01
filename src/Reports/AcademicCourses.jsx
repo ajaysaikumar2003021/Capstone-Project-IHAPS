@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { URL_SERVER } from "../serverurl";
+import { useReactToPrint } from "react-to-print";
 // import GetData from './TimeRange'
 
 const AcademicCourses = (props) => {
@@ -24,9 +25,14 @@ const AcademicCourses = (props) => {
 
   },[]);
 
-   
+  const componentRef = useRef()
+  const handlePrint = useReactToPrint( {
+    content: () => componentRef.current,
+   })
+
   return (
-    <div className="container-fluid">
+    <>
+    <div className="container-fluid" id="sust-courses-report" ref={componentRef}>
       <h2 className="curriculum-head">Sustainability Courses Outcomes</h2>
       {/* <GetData onChange={handleDateChange} onClick={getData}/> */}
       <div className="container report-curriculum">
@@ -40,7 +46,7 @@ const AcademicCourses = (props) => {
           <tbody>
             <tr>
               <td>Total number of undergraduate courses offered by the institution</td>
-              <td>{state.data? state.data['1']: 0}</td>
+              <td>{state.data ? state.data['1']: 0}</td>
             </tr>
             <tr>
               <td>Number of undergraduate courses offered that are sustainability-focused</td>
@@ -79,7 +85,19 @@ const AcademicCourses = (props) => {
           </tfoot>
         </table>
       </div>
+      
     </div>
+    
+      <div class="container">
+      <div class="row">
+        <div class="col text-center">
+        <button type="submit" className="btn btn-primary w-50"  onClick={handlePrint}>Download</button>
+          
+        </div>
+      </div>
+    </div>
+    </>
+
   );
 };
 

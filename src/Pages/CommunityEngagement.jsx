@@ -37,6 +37,7 @@ let departments= {
   ]
 }
 
+
 function getColleges(){
   const colleges = [];
   for(const c in departments){
@@ -154,6 +155,34 @@ const CommunityEngagement = (props) => {
   const [CEP, setCEP] = useState(initial_stateCEP);
   const [CP, setCP] = useState(initial_stateCP);
 
+  const [stateTargetAudience, setStateTargetAudience] = useState([])
+  var target_audience = []
+
+  const handleTargetAudienceChange = (e) => {
+
+    if (!stateTargetAudience.includes(e.target.value)  ) {
+      // impact_area_vals.push(e.target.value)
+      console.log("in if block")
+      setStateTargetAudience(prev => ([
+          ...prev,
+          e.target.value
+        ]
+      ))
+    }
+    else{
+      console.log("in else block")
+      target_audience = stateTargetAudience.filter((v) => {
+        return v !== e.target.value;
+      })
+      setStateTargetAudience(target_audience)
+      // console.log(stateImp_area);
+      // console.log(stateImp_area.includes(e.target.value));
+    }
+
+    console.log(stateTargetAudience);
+    console.log(stateTargetAudience.includes(e.target.value));
+  }
+
   const handleInputChangeSSGPI = (e) => {
     setSSGPI(prevState => ({
       ...prevState,
@@ -251,6 +280,8 @@ const CommunityEngagement = (props) => {
     
     const uploadData = new FormData();
     // uploadData.append(...state);
+    SSGPI.target_audience = stateTargetAudience.join(" , ");
+
     for (let key in SSGPI) {
       uploadData.append(key, SSGPI[key]);
     }
@@ -277,6 +308,8 @@ const CommunityEngagement = (props) => {
     .then(data => {
         console.log(data)
         setSSGPI(initial_stateSSGPI)
+        target_audience = []
+        setStateTargetAudience([])
     })
     .catch(err => {
         alert(err)
@@ -518,7 +551,7 @@ const CommunityEngagement = (props) => {
                       className="form-control"
                       // id="inputEmail4"
                       name="student_sust_grp_prog_initiative_title"
-                      value={SSGPI.student_sust_grp_prog_initiative_name}
+                      value={SSGPI.student_sust_grp_prog_initiative_title}
                       onChange={handleInputChangeSSGPI}
                     />
                   </div>
@@ -538,23 +571,85 @@ const CommunityEngagement = (props) => {
                     ></textarea>
                   </div>
 
+                  
+
+                  {/*  */}
                   <div className="col-md-12">
-                    <label for="inputState" className="form-label fw-bold">
-                    Target Audience(s) Group, Program or Initiative: (Select all that apply)
+                    <label for="inputPassword4" className="form-label fw-bold">
+                    Target Audience(s) (Select all that apply)
                     </label>
-                    <select id="inputState" className="form-select"
-                      name="target_audience"
-                      value={SSGPI.target_audience}
-                      onChange={handleInputChangeSSGPI}
-                    >
-                      <option selected>Choose...</option>
-                      <option value="Students">Students</option>
-                      <option value="Staff">Staff</option>
-                      <option value="Faculty">Faculty</option>
-                      <option value="Alumni">Alumni</option>
-                      <option value="Community">Community</option>
-                    </select>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name="imp_area"
+                        value="Students"
+                        onChange={handleTargetAudienceChange}
+                        checked={stateTargetAudience.includes("Students")}
+                      />
+                      <label className="form-check-label " for="inlineRadio1">
+                      Students
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name="imp_area"
+                        value="Staff"
+                        onChange={handleTargetAudienceChange}
+                        checked={stateTargetAudience.includes("Staff")}
+                      />
+                      <label className="form-check-label " for="inlineRadio1">
+                      Staff
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name="imp_area"
+                        value="Faculty"
+                        onChange={handleTargetAudienceChange}
+                        checked={stateTargetAudience.includes("Faculty")}
+                      />
+                      <label className="form-check-label " for="inlineRadio1">
+                      Faculty
+                      </label>
+                    </div>
+
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name="imp_area"
+                        value="Alumni"
+                        onChange={handleTargetAudienceChange}
+                        checked={stateTargetAudience.includes("Alumni")}
+                      />
+                      <label className="form-check-label " for="inlineRadio1">
+                      Alumni
+                      </label>
+                    </div>
+
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        name="imp_area"
+                        value="Community"
+                        onChange={handleTargetAudienceChange}
+                        checked={stateTargetAudience.includes("Community")}
+                      />
+                      <label className="form-check-label " for="inlineRadio1">
+                      Community
+                      </label>
+                    </div>
+                    
+                    
                   </div>
+
+                  {/*  */}
 
                   <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
@@ -566,7 +661,7 @@ const CommunityEngagement = (props) => {
                       className="form-control"
                       // id="inputEmail4"
                       name="description_of_measureable_impacts"
-                      value={SSGPI.description_of_measurable_impacts}
+                      value={SSGPI.description_of_measureable_impacts}
                       onChange={handleInputChangeSSGPI}
                     ></textarea>
                   </div>
@@ -616,11 +711,11 @@ const CommunityEngagement = (props) => {
                     ></textarea>
                   </div>
                   ) : null }
-                  {/* POC UPDATE */}
+                  {/* Point of Contact (POC)  UPDATE */}
                   
                   <div className="col-md-12">
                   <label for="inputEmail4" className="form-label fw-bold">
-                    POC Name
+                    Point of Contact (POC)  Name
                   </label>
                   <input
                     type="text"
@@ -633,7 +728,7 @@ const CommunityEngagement = (props) => {
                   </div>
                   <div className="col-md-12">
                   <label for="inputEmail4" className="form-label fw-bold">
-                    POC Email
+                    Point of Contact (POC)  Email
                   </label>
                   <input
                     type="email"
@@ -646,7 +741,7 @@ const CommunityEngagement = (props) => {
                   </div>
                   <div className="col-md-12">
                   <label for="inputEmail4" className="form-label fw-bold">
-                    POC Phone
+                    Point of Contact (POC)  Phone
                   </label>
                   <input
                     type="text"
@@ -657,7 +752,7 @@ const CommunityEngagement = (props) => {
                     onChange={handleInputChangeSSGPI}
                   ></input>
                   </div>
-                  {/* POC UPDATE */}
+                  {/* Point of Contact (POC)  UPDATE */}
                   <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       URL (If available)
@@ -739,11 +834,11 @@ const CommunityEngagement = (props) => {
                     />
                   </div>
 
-                  {/* POC UPDATE */}
+                  {/* Point of Contact (POC)  UPDATE */}
                                     
                   <div className="col-md-12">
                   <label for="inputEmail4" className="form-label fw-bold">
-                    POC Name
+                    Point of Contact (POC)  Name
                   </label>
                   <input
                     type="text"
@@ -756,7 +851,7 @@ const CommunityEngagement = (props) => {
                   </div>
                   <div className="col-md-12">
                   <label for="inputEmail4" className="form-label fw-bold">
-                    POC Email
+                    Point of Contact (POC)  Email
                   </label>
                   <input
                     type="email"
@@ -769,7 +864,7 @@ const CommunityEngagement = (props) => {
                   </div>
                   <div className="col-md-12">
                   <label for="inputEmail4" className="form-label fw-bold">
-                    POC Phone
+                    Point of Contact (POC)  Phone
                   </label>
                   <input
                     type="text"
@@ -780,7 +875,7 @@ const CommunityEngagement = (props) => {
                     onChange={handleInputChangePTPO}
                   ></input>
                   </div>
-                  {/* POC UPDATE */}
+                  {/* Point of Contact (POC)  UPDATE */}
 
                   <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
@@ -851,7 +946,7 @@ const CommunityEngagement = (props) => {
 
                   <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
-                      Number of actively trained Educators(Enter Number)
+                      Number of actively trained Educators (Enter Number)
                     </label>
                     <input
                       type="text"
@@ -877,7 +972,7 @@ const CommunityEngagement = (props) => {
                   <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Average or expected number of hours worked weekly per
-                      trained educator(Enter Number)
+                      trained educator (Enter Number)
                     </label>
                     <input
                       type="text"
@@ -1156,11 +1251,11 @@ const CommunityEngagement = (props) => {
                     </select>
                   </div>
 
-                  {/* POC UPDATE */}
+                  {/* Point of Contact (POC)  UPDATE */}
                                     
                   <div className="col-md-12">
                   <label for="inputEmail4" className="form-label fw-bold">
-                    POC Name
+                    Point of Contact (POC)  Name
                   </label>
                   <input
                     type="text"
@@ -1173,7 +1268,7 @@ const CommunityEngagement = (props) => {
                   </div>
                   <div className="col-md-12">
                   <label for="inputEmail4" className="form-label fw-bold">
-                    POC Email
+                    Point of Contact (POC)  Email
                   </label>
                   <input
                     type="email"
@@ -1186,7 +1281,7 @@ const CommunityEngagement = (props) => {
                   </div>
                   <div className="col-md-12">
                   <label for="inputEmail4" className="form-label fw-bold">
-                    POC Phone
+                    Point of Contact (POC)  Phone
                   </label>
                   <input
                     type="text"
@@ -1197,7 +1292,7 @@ const CommunityEngagement = (props) => {
                     onChange={handleInputChangeSPD}
                   ></input>
                   </div>
-                  {/* POC UPDATE */}
+                  {/* Point of Contact (POC)  UPDATE */}
                   <div className="col-md-12">
                     <label className="form-label fw-bold">
                       Supporting Documents (Optional)
@@ -1364,11 +1459,11 @@ const CommunityEngagement = (props) => {
                     </div>
                   </div>
 
-                  {/* POC UPDATE */}
+                  {/* Point of Contact (POC)  UPDATE */}
                   
                   <div className="col-md-12">
                   <label for="inputEmail4" className="form-label fw-bold">
-                    POC Name
+                    Point of Contact (POC)  Name
                   </label>
                   <input
                     type="text"
@@ -1381,7 +1476,7 @@ const CommunityEngagement = (props) => {
                   </div>
                   <div className="col-md-12">
                   <label for="inputEmail4" className="form-label fw-bold">
-                    POC Email
+                    Point of Contact (POC)  Email
                   </label>
                   <input
                     type="email"
@@ -1394,7 +1489,7 @@ const CommunityEngagement = (props) => {
                   </div>
                   <div className="col-md-12">
                   <label for="inputEmail4" className="form-label fw-bold">
-                    POC Phone
+                    Point of Contact (POC)  Phone
                   </label>
                   <input
                     type="text"
@@ -1405,7 +1500,7 @@ const CommunityEngagement = (props) => {
                     onChange={handleInputChangeCP}
                   ></input>
                   </div>
-                  {/* POC UPDATE */}
+                  {/* Point of Contact (POC)  UPDATE */}
                   <div className="col-md-12">
                     <label className="form-label fw-bold">
                       Website URL (If available)
@@ -1474,11 +1569,11 @@ const CommunityEngagement = (props) => {
                     ></textarea>
                   </div>
 
-                  {/* POC UPDATE */}
+                  {/* Point of Contact (POC)  UPDATE */}
                                     
                   <div className="col-md-12">
                   <label for="inputEmail4" className="form-label fw-bold">
-                    POC Name
+                    Point of Contact (POC)  Name
                   </label>
                   <input
                     type="text"
@@ -1491,7 +1586,7 @@ const CommunityEngagement = (props) => {
                   </div>
                   <div className="col-md-12">
                   <label for="inputEmail4" className="form-label fw-bold">
-                    POC Email
+                    Point of Contact (POC)  Email
                   </label>
                   <input
                     type="email"
@@ -1504,7 +1599,7 @@ const CommunityEngagement = (props) => {
                   </div>
                   <div className="col-md-12">
                   <label for="inputEmail4" className="form-label fw-bold">
-                    POC Phone
+                    Point of Contact (POC)  Phone
                   </label>
                   <input
                     type="text"
@@ -1515,7 +1610,7 @@ const CommunityEngagement = (props) => {
                     onChange={handleInputChangeCEP}
                   ></input>
                   </div>
-                  {/* POC UPDATE */}
+                  {/* Point of Contact (POC)  UPDATE */}
 
                   <div className="col-md-12">
                     <label for="inputState" className="form-label fw-bold"

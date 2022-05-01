@@ -228,7 +228,7 @@ const Faculty = (props) => {
                       </label>
                     </div>
                   </div>
-                  {(state.peer_reviewed_journal === "yes" || state.peer_reviewed_reviewed === "pending") ? (
+                  {(state.peer_reviewed_journal === "yes" || state.peer_reviewed_journal === "pending") ? (
                   <div className="col-md-12">
                     <label for="inputEmail4" className="form-label fw-bold">
                       Provide Publication title, Journal
@@ -244,7 +244,7 @@ const Faculty = (props) => {
                   </div>
                   ) : null}
 
-                  {(state.peer_reviewed_journal === "yes" || state.peer_reviewed_journal === "pending") ? (
+                  {(state.peer_reviewed_journal === "yes" ) ? (
                   <div className="col-md-12">
                     <label for="inputPassword4" className="form-label fw-bold">
                       Is the publication deposited in a designated open

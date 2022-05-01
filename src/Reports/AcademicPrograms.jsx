@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useRef} from "react";
 import { URL_SERVER } from "../serverurl";
-
+import { useReactToPrint } from "react-to-print";
 const AcademicPrograms = (props) => {
     const [state, setState] = useState({});
     useEffect(() => {
@@ -29,8 +29,14 @@ const AcademicPrograms = (props) => {
 
   },[]);
 
+  const componentRef = useRef()
+  const handlePrint = useReactToPrint( {
+    content: () => componentRef.current,
+   })
+
   return (
-    <div className="container-fluid">
+    <>
+    <div className="container-fluid" ref={componentRef}>
       <h2 className="curriculum-head">Sustainability Programs Outcomes</h2>
       <div className="container report-curriculum">
         <table class="table table-striped table-bordered table-curriculum">
@@ -113,6 +119,16 @@ const AcademicPrograms = (props) => {
         </table>
       </div>
     </div>
+    
+      <div class="container">
+      <div class="row">
+        <div class="col text-center">
+        <button type="submit" className="btn btn-primary w-50"  onClick={handlePrint}>Download</button>
+          
+        </div>
+      </div>
+    </div>
+    </>
   );
 };
 

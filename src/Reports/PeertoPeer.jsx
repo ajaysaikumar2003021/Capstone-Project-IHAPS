@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { URL_SERVER } from "../serverurl";
 import GetData from './TimeRange'
+import { useReactToPrint } from "react-to-print";
 
 const PeertoPeer = (props) => {
     const [state, setState] = useState({});
@@ -34,9 +35,13 @@ const PeertoPeer = (props) => {
           setEnddate(e.target.value);
         }
       }
-
+      const componentRef = useRef()
+  const handlePrint = useReactToPrint( {
+    content: () => componentRef.current,
+   })
   return (
-    <div className="container-fluid">
+    <>
+    <div className="container-fluid" ref={componentRef}>
       <h2 className="curriculum-head">Report Peer-to-peer Outreach</h2>
       <GetData onChange={handleDateChange} onClick={getData}/>
       <div className="container report-curriculum">
@@ -82,6 +87,17 @@ const PeertoPeer = (props) => {
         </table>
       </div>
     </div>
+      {/* </div> */}
+    
+      <div class="container">
+      <div class="row">
+        <div class="col text-center">
+        <button type="submit" className="btn btn-primary w-50"  onClick={handlePrint}>Download</button>
+          
+        </div>
+      </div>
+    </div>
+    </>
   );
 };
 

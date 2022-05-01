@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from  "react";
+import React, { useState, useEffect, useRef } from  "react";
 import { Navigate } from "react-router-dom";
 import { URL_SERVER } from "../serverurl";
 import GetData from './TimeRange'
-
+import { useReactToPrint } from "react-to-print";
 const CampusAsLL = (props) => {
 
 
@@ -41,8 +41,13 @@ const CampusAsLL = (props) => {
         }
       }
 
+  const componentRef = useRef()
+  const handlePrint = useReactToPrint( {
+    content: () => componentRef.current,
+   })
   return (
-    <div className="container-fluid">
+    <>
+    <div className="container-fluid" ref={componentRef}>
       <h2 className="curriculum-head">Applied Student Learning Report</h2>
       <GetData onChange={handleDateChange} onClick={getData}/>
       <div className="container report-curriculum">
@@ -109,6 +114,17 @@ const CampusAsLL = (props) => {
         </table>
       </div>
     </div>
+      
+    
+      <div class="container">
+      <div class="row">
+        <div class="col text-center">
+        <button type="submit" className="btn btn-primary w-50"  onClick={handlePrint}>Download</button>
+          
+        </div>
+      </div>
+    </div>
+    </>
   );
 };
 
