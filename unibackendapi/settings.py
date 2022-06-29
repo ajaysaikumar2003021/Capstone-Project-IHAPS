@@ -88,7 +88,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'unibackendapi.wsgi.application'
 CORS_ALLOW_ALL_ORIGINS = True
-ALLOWED_HOSTS = ['backend-ihaps.herokuapp.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['backend-ihaps.herokuapp.com', '127.0.0.1', 'localhost', 'https://ihaps-be.herokuapp.com']
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases

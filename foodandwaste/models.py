@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 
 class FoodBeveragePurchasing(models.Model):
+    # reporting_academic_year = models.CharField(max_length=20)
     product_name = models.CharField(max_length=100)
     product_type = models.CharField(max_length=100)
     single_ingredient = models.BooleanField(default=False)

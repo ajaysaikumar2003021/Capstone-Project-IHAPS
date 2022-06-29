@@ -1,3 +1,4 @@
+
 # from django.shortcuts import render
 import re
 from rest_framework import viewsets
@@ -36,8 +37,8 @@ class DeptsContainingSustResearchEmpViewSet(viewsets.ReadOnlyModelViewSet):
         depts = []
         for obj in queryset.values():
             # print(obj['department_affiliation'])
-            if obj['department_affiliation'] not in depts:
-                depts.append(obj['department_affiliation'])
+            if obj['department'] not in depts:
+                depts.append(obj['department'])
         return Response({'response':'success', 'data': len(depts)})
 
 
@@ -47,15 +48,15 @@ class FacultyConductingSustResByDeptViewSet(viewsets.ReadOnlyModelViewSet):
     def list(self, request, *args, **kwargs):
         request_data = request.query_params
         print(request_data)
-        queryset = models.FacultySustResearchAndService.objects.filter(reporting_date__range=[request.query_params['startdate'], request.query_params['enddate']])
+        queryset = models.FacultySustResearchAndService.objects.filter(reporting_period_start_date__range=[request.query_params['startdate'], request.query_params['enddate']])
         depts = {}
         for obj in queryset.values():
             # print(obj['department_affiliation'])
-            if obj['department_affiliation'] not in depts:
+            if obj['department'] not in depts:
                 # depts.append(obj['department_affiliation'])
-                depts[obj['department_affiliation']] = 1
+                depts[obj['department']] = 1
             else:
-                depts[obj['department_affiliation']] += 1
+                depts[obj['department']] += 1
         return Response({'response':'success', 'data': depts})
 
 
@@ -78,4 +79,5 @@ class FSRSReportViewSet(viewsets.ReadOnlyModelViewSet):
             3: rep3['data'],
             4: timestamp
         }
+        print(data)
         return Response({'response':'success', 'data': data})

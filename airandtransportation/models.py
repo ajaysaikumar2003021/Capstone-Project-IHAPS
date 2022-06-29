@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 class CampusFleet(models.Model):
     # reporting_period_start_date = models.CharField(max_length=100)
+    # reporting_academic_year = models.CharField(max_length=20)
     reporting_period_start_date = models.DateField(null=True, blank=True)
     reporting_period_end_date = models.DateField(null=True, blank=True)
     # campus_fleet_title = models.CharField(max_length=100, unique=True)

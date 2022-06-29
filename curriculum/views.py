@@ -10,6 +10,7 @@ from rest_framework.response import Response
 from . import models
 from . import serializers
 from django.http import HttpResponse
+import datetime
 # Create your views here.
 
 
@@ -259,10 +260,17 @@ class CLLProjectsByAcadYearViewSet(viewsets.ReadOnlyModelViewSet):
         vals = queryset.values()
         distinct_years = {}
         for v in vals:
-            if v['academic_year'] not in distinct_years:
-                distinct_years[v['academic_year']] = 1
+            print(f"value being fetched: {v['reporting_period_start_date']}")
+            datem = str(v['reporting_period_start_date']).split('-')[0]
+            print(f"printing date: {datem}")
+            # if v['reporting_academic_year'] not in distinct_years:
+            #     distinct_years[v['reporting_academic_year']] = 1
+            # else:
+            #     distinct_years[v['reporting_academic_year']] += 1
+            if v['reporting_period_start_date'] not in distinct_years:
+                distinct_years[datem] = 1
             else:
-                distinct_years[v['academic_year']] += 1
+                distinct_years[datem ] += 1
         return Response({'results': 'response', 'data': distinct_years})
 
 # multiple selections need to be handled

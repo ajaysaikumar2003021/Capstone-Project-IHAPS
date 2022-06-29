@@ -8,7 +8,8 @@ def upload_file(instance, filename):
 
 #  PTPO
 class PeerToPeerOutreach(models.Model):
-    reporting_date = models.CharField(max_length=10, null=True)
+    reporting_period_start_date = models.DateField(null=True, blank=True)
+    reporting_period_end_date = models.DateField(null=True, blank=True)
     peer_to_peer_outreach_type = models.TextField(max_length=100)
     peer_to_peer_outreach_title = models.CharField(max_length=100, unique=True)
     poc_name = models.CharField(max_length=255, blank=True, null=True)
@@ -32,7 +33,8 @@ class PeerToPeerOutreach(models.Model):
 
 # SSGPI
 class StudentSustGrpProgInitiative(models.Model):
-    reporting_date = models.DateField()
+    reporting_period_start_date = models.DateField(null=True, blank=True)
+    reporting_period_end_date = models.DateField(null=True, blank=True)
     student_sust_grp_prog_initiative_type = models.CharField(max_length=500) # length needs to be verified
     student_sust_grp_prog_initiative_title = models.CharField(max_length=100, unique=True)
     description = models.CharField(max_length=255)
@@ -52,26 +54,29 @@ class StudentSustGrpProgInitiative(models.Model):
 
 # CEC
 class ContinuingEducationCourse(models.Model):
-    reporting_date = models.DateField()
+    reporting_period_start_date = models.DateField(null=True, blank=True)
+    reporting_period_end_date = models.DateField(null=True, blank=True)
     continuing_education_course_title = models.CharField(max_length=100, unique=True)
-    college_or_unit = models.CharField(max_length=255, null=True)
-    department = models.CharField(max_length=100)
+    host_unit = models.CharField(max_length=255, null=True)
+    
     course_description = models.CharField(max_length=255)
     course_type = models.CharField(max_length=100)
-    semester_offered = models.CharField(max_length=15)
-    academic_year = models.CharField(max_length=10)
+    num_of_times_course_offered = models.CharField(max_length=15)
+    
 
     def __str__(self):
         return self.continuing_education_course_title
 
 # SPD
 class StaffProfessionalDevelopment(models.Model):
-    reporting_date = models.DateField()
+    reporting_period_start_date = models.DateField(null=True, blank=True)
+    reporting_period_end_date = models.DateField(null=True, blank=True)
     staff_professional_development_title = models.CharField(max_length=100, unique=True)
     description = models.CharField(max_length=255)
     dates_offered = models.CharField(max_length=100)
     num_of_staff_participants = models.IntegerField()
     internally_or_externally_funded = models.CharField(max_length=100)
+    externally_funded = models.CharField(max_length=100)
     poc_name = models.CharField(max_length=255, blank=True, null=True)
     poc_email = models.EmailField(max_length=255, blank=True, null=True)
     poc_phone = models.CharField(max_length=255, blank=True, null=True)
@@ -84,15 +89,15 @@ class StaffProfessionalDevelopment(models.Model):
 
 # CEP
 class CommunityEducationProgram(models.Model):
-    reporting_date = models.DateField()
+    reporting_period_start_date = models.DateField(null=True, blank=True)
+    reporting_period_end_date = models.DateField(null=True, blank=True)
     ce_program_title = models.CharField(max_length=100, unique=True)
     description = models.CharField(max_length=255)
     poc_name = models.CharField(max_length=255, blank=True, null=True)
     poc_email = models.EmailField(max_length=255, blank=True, null=True)
     poc_phone = models.CharField(max_length=255, blank=True, null=True)
-    semester_program_started = models.CharField(max_length=100)
-    year_program_started = models.CharField(max_length=10)
-    program_status = models.CharField(max_length=10)
+    year_program_started = models.CharField(max_length=255)
+    dates_offered = models.CharField(max_length=255, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -100,7 +105,8 @@ class CommunityEducationProgram(models.Model):
 
 # CP
 class CommunityPartnership(models.Model):
-    reporting_date = models.DateField()
+    reporting_period_start_date = models.DateField(null=True, blank=True)
+    reporting_period_end_date = models.DateField(null=True, blank=True)
     community_partnership_title = models.CharField(max_length=100, unique=True)
     description = models.CharField(max_length=255)
     supported = models.BooleanField(default=False)
